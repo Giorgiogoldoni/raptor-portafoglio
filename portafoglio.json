@@ -21,38 +21,11 @@
     {
       "ticker": "3OIS",
       "yahoo": "3OIS.MI",
-      "nome": "WisdomTree WTI Crude Oil 3x Daily Short",
+      "nome": "WisdomTree WTI Crude Oil 3x Short",
       "carico": 1.89,
       "quantita": 100,
       "data_acquisto": "2026-07-02",
       "note": ""
-    },
-    {
-      "ticker": "ISPY",
-      "yahoo": "ISPY.MI",
-      "nome": "ISPY ETF",
-      "carico": 20.0,
-      "quantita": 100,
-      "data_acquisto": "2026-06-20",
-      "note": "non in raptor-leva"
-    },
-    {
-      "ticker": "SVE",
-      "yahoo": "SVE.MI",
-      "nome": "UBS MSCI Switzerland",
-      "carico": 14.5,
-      "quantita": 100,
-      "data_acquisto": "2026-06-25",
-      "note": "non in raptor-leva"
-    },
-    {
-      "ticker": "BAYN",
-      "yahoo": "BAYN.DE",
-      "nome": "Bayer AG",
-      "carico": 42.0,
-      "quantita": 100,
-      "data_acquisto": "2026-07-02",
-      "note": "non in raptor-leva — borsa DE"
     }
   ],
   "storico": []
