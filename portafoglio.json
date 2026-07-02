@@ -1,0 +1,32 @@
+{
+  "posizioni": [
+    {
+      "ticker": "3PYP",
+      "yahoo": "3PYP.MI",
+      "nome": "Leverage Shares 3x PayPal ETP",
+      "carico": 1.6,
+      "quantita": 100,
+      "data_acquisto": "2026-07-02",
+      "note": ""
+    },
+    {
+      "ticker": "SVE",
+      "yahoo": "SVE.MI",
+      "nome": "UBS MSCI Switzerland",
+      "carico": 14.5,
+      "quantita": 100,
+      "data_acquisto": "2026-06-25",
+      "note": ""
+    },
+    {
+      "ticker": "ISPY",
+      "yahoo": "ISPY.MI",
+      "nome": "ISPY ETF",
+      "carico": 20.0,
+      "quantita": 100,
+      "data_acquisto": "2026-06-20",
+      "note": ""
+    }
+  ],
+  "storico": []
+}
