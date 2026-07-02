@@ -10,12 +10,21 @@
       "note": ""
     },
     {
-      "ticker": "SVE",
-      "yahoo": "SVE.MI",
-      "nome": "UBS MSCI Switzerland",
-      "carico": 14.5,
+      "ticker": "3LMS",
+      "yahoo": "3LMS.MI",
+      "nome": "Leverage Shares 3x LVMH ETP",
+      "carico": 9.2,
       "quantita": 100,
-      "data_acquisto": "2026-06-25",
+      "data_acquisto": "2026-07-02",
+      "note": ""
+    },
+    {
+      "ticker": "3OIS",
+      "yahoo": "3OIS.MI",
+      "nome": "WisdomTree WTI Crude Oil 3x Daily Short",
+      "carico": 1.89,
+      "quantita": 100,
+      "data_acquisto": "2026-07-02",
       "note": ""
     },
     {
@@ -25,7 +34,25 @@
       "carico": 20.0,
       "quantita": 100,
       "data_acquisto": "2026-06-20",
-      "note": ""
+      "note": "non in raptor-leva"
+    },
+    {
+      "ticker": "SVE",
+      "yahoo": "SVE.MI",
+      "nome": "UBS MSCI Switzerland",
+      "carico": 14.5,
+      "quantita": 100,
+      "data_acquisto": "2026-06-25",
+      "note": "non in raptor-leva"
+    },
+    {
+      "ticker": "BAYN",
+      "yahoo": "BAYN.DE",
+      "nome": "Bayer AG",
+      "carico": 42.0,
+      "quantita": 100,
+      "data_acquisto": "2026-07-02",
+      "note": "non in raptor-leva — borsa DE"
     }
   ],
   "storico": []
