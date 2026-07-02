@@ -81,6 +81,16 @@ td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
 /* STORICO */
 .storico-row{opacity:.7}
 .storico-row td{font-size:11px}
+
+/* CHART POPUP */
+.chart-popup{position:fixed;z-index:500;background:#fff;border:1px solid var(--border);border-radius:8px;
+  box-shadow:0 8px 32px rgba(0,0,0,.18);padding:0;width:620px;display:none;pointer-events:none}
+.chart-popup.visible{display:block}
+.chart-popup-header{background:#1a1816;color:#fff;padding:8px 14px;border-radius:8px 8px 0 0;
+  display:flex;align-items:center;gap:8px;font-family:var(--font-cond);font-size:12px}
+.chart-popup-body{padding:8px}
+.chart-loading{text-align:center;padding:40px;color:var(--text3);font-size:11px;font-family:var(--font-cond)}
+
 </style>
 </head>
 <body>
@@ -262,7 +272,7 @@ function render() {
     const nome = p.nome || live.nome || '—';
 
     return `<tr>
-      <td class="mono" style="font-weight:700;color:var(--accent)">${p.ticker}</td>
+      <td><span class="ticker-link mono" data-ticker="${p.ticker}" data-yahoo="${p.yahoo||p.ticker+'.MI'}" style="font-weight:700;color:var(--accent);cursor:pointer;text-decoration:underline dotted">${p.ticker}</span></td>
       <td style="font-size:11px;color:var(--text2);max-width:180px;overflow:hidden;text-overflow:ellipsis" title="${nome}">${nome}</td>
       <td class="mono right">${p.carico.toFixed(4)}</td>
       <td class="mono right" style="font-weight:700">${prezzo.toFixed(4)}</td>
@@ -454,6 +464,222 @@ fetch('https://api.github.com/repos/Giorgiogoldoni/raptor-portafoglio/contents/p
 
 init();
 setInterval(init, 5*60*1000); // Refresh ogni 5 minuti
+
+
+// ═══ CHART POPUP ══════════════════════════════════
+const CHARTS_BASE_PF = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-leva/main/data/charts/';
+let popupTimer = null, popupVisible = false;
+
+function showChartPopup(ticker, yahoo, e) {
+  const popup = document.getElementById('chartPopup');
+  positionPopup(popup, e);
+  popup.classList.add('visible');
+  popupVisible = true;
+  document.getElementById('popupTicker').textContent = ticker;
+  document.getElementById('popupNome').textContent    = '';
+  document.getElementById('popupZona').textContent    = '';
+  document.getElementById('popupChart').innerHTML     = '<div class="chart-loading">⏳ Caricamento grafico...</div>';
+  loadPopupChart(ticker, yahoo);
+}
+
+function hideChartPopup() {
+  popupVisible = false;
+  document.getElementById('chartPopup').classList.remove('visible');
+}
+
+function positionPopup(popup, e) {
+  const W = window.innerWidth, H = window.innerHeight;
+  let x = e.clientX + 16, y = e.clientY + 16;
+  if(x + 630 > W) x = e.clientX - 630;
+  if(y + 400 > H) y = e.clientY - 400;
+  popup.style.left = Math.max(4, x) + 'px';
+  popup.style.top  = Math.max(4, y) + 'px';
+}
+
+async function loadPopupChart(ticker, yahoo) {
+  const fname = (yahoo||ticker+'.MI').replace('.','_') + '.json';
+  try {
+    const d = await fetch(CHARTS_BASE_PF + fname + '?t=' + Date.now()).then(r => r.json());
+    document.getElementById('popupNome').textContent = d.nome || '';
+    const zona = levaMap[ticker]?.zona || '';
+    const zonaColor = {LONG_CONF:'#2f9e44',LONG_EARLY:'#1971c2',GRIGIA:'#e67700',USCITA:'#c92a2a',STOP:'#862e2e'}[zona]||'#868e96';
+    document.getElementById('popupZona').innerHTML = zona ?
+      `<span style="background:${zonaColor};color:#fff;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700">${zona}</span>` : '';
+    drawPopupSVG(d);
+  } catch(e) {
+    document.getElementById('popupChart').innerHTML =
+      '<div class="chart-loading">❌ Grafico non disponibile — eseguire prima il workflow chart</div>';
+  }
+}
+
+function drawPopupSVG(d) {
+  const n  = Math.min(63, d.closes.length);
+  const sl = d.closes.length - n;
+  const sl2= arr => (arr||[]).slice(sl);
+
+  const closes = sl2(d.closes), kf = sl2(d.kama_fast), ks = sl2(d.kama_slow);
+  const r14 = sl2(d.rsi14), r5 = sl2(d.rsi5), ao = sl2(d.ao), sigs = sl2(d.signals);
+  const dates = sl2(d.dates);
+  const N = closes.length;
+
+  const W=596, PAD={l:44,r:20,t:4,b:16};
+  const PW=W-PAD.l-PAD.r;
+  const ns='http://www.w3.org/2000/svg';
+
+  // Pannelli: price 110px, AO 40px, RSI 55px
+  const panels=[{h:110,id:'price'},{h:40,id:'ao'},{h:55,id:'rsi'}];
+  const GAP=12, totalH=panels.reduce((s,p)=>s+p.h+GAP,0)+PAD.t+PAD.b;
+
+  const svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('width',W); svg.setAttribute('height',totalH);
+  svg.style.cssText='display:block;background:#fff';
+
+  function xPos(i){return PAD.l+(i/Math.max(N-1,1))*PW;}
+  function scY(v,mn,mx,yT,h){if(mx===mn)return yT+h/2;return yT+h-((v-mn)/(mx-mn))*h;}
+  function el(tag,attrs,par){
+    const e=document.createElementNS(ns,tag);
+    for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);
+    (par||svg).appendChild(e);return e;
+  }
+  function line(x1,y1,x2,y2,stroke,sw=0.5,dash=''){
+    el('line',{x1:x1.toFixed(1),y1:y1.toFixed(1),x2:x2.toFixed(1),y2:y2.toFixed(1),
+      stroke,'stroke-width':sw,...(dash?{'stroke-dasharray':dash}:{})});
+  }
+  function poly(pts,stroke,sw=1.5,dash=''){
+    if(pts.length<2)return;
+    el('polyline',{points:pts.map(([x,y])=>`${x.toFixed(1)},${y.toFixed(1)}`).join(' '),
+      stroke,'stroke-width':sw,fill:'none','stroke-linejoin':'round',...(dash?{'stroke-dasharray':dash}:{})});
+  }
+  function rect(x,y,w,h,fill,op=1){
+    if(w<=0||h<=0)return;
+    el('rect',{x:x.toFixed(1),y:y.toFixed(1),width:Math.max(0,w).toFixed(1),height:Math.max(0,h).toFixed(1),fill,opacity:op});
+  }
+  function txt(x,y,s,fill,size=7.5,anchor='middle'){
+    const e=el('text',{x:x.toFixed(1),y:y.toFixed(1),fill,'font-size':size,
+      'font-family':'Space Mono,monospace','text-anchor':anchor});e.textContent=s;
+  }
+  function tri(cx,cy,sz,up,fill){
+    const pts=up?`${cx},${cy-sz} ${cx-sz},${cy+sz} ${cx+sz},${cy+sz}`:`${cx},${cy+sz} ${cx-sz},${cy-sz} ${cx+sz},${cy-sz}`;
+    el('polygon',{points:pts,fill});
+  }
+
+  let yOff=PAD.t;
+  panels.forEach(panel=>{
+    const yTop=yOff, h=panel.h;
+    rect(PAD.l,yTop,PW,h,'#f8f9fa');
+    for(let g=0;g<=4;g++) line(PAD.l,yTop+h/4*g,PAD.l+PW,yTop+h/4*g,g===0||g===4?'#ced4da':'#e9ecef',g===0||g===4?.8:.4);
+
+    if(panel.id==='price'){
+      const allP=[...closes,...kf.filter(v=>v!=null),...ks.filter(v=>v!=null)].filter(v=>v!=null);
+      const mn=Math.min(...allP)*.997, mx=Math.max(...allP)*1.003;
+      const sy=v=>scY(v,mn,mx,yTop,h);
+      for(let g=0;g<=3;g++) txt(PAD.l-3,sy(mn+(mx-mn)/3*g)+3,(mn+(mx-mn)/3*g).toFixed(3),'#adb5bd',6.5,'end');
+      // Fill area KAMA
+      const fp=[];
+      for(let i=0;i<N;i++) if(kf[i]!=null&&ks[i]!=null) fp.push(i);
+      if(fp.length>1){
+        let ss=fp[0],pa=kf[fp[0]]>ks[fp[0]];
+        const df=(fr,to,ab)=>{
+          const tp=[],bp=[];
+          for(let i=fr;i<=to;i++){if(kf[i]==null||ks[i]==null)continue;tp.push([xPos(i),sy(ab?kf[i]:ks[i])]);bp.unshift([xPos(i),sy(ab?ks[i]:kf[i])]);}
+          const pts=[...tp,...bp];if(pts.length<3)return;
+          el('polygon',{points:pts.map(([x,y])=>`${x.toFixed(1)},${y.toFixed(1)}`).join(' '),fill:ab?'#2f9e44':'#c92a2a',opacity:'.07'});
+        };
+        for(let ii=1;ii<fp.length;ii++){const i=fp[ii],ab=kf[i]>ks[i];if(ab!==pa||ii===fp.length-1){df(ss,fp[ii-(ii===fp.length-1?0:1)],pa);ss=i;pa=ab;}}
+      }
+      poly(ks.map((v,i)=>v!=null?[xPos(i),sy(v)]:null).filter(Boolean),'#7c3aed',1.5);
+      poly(kf.map((v,i)=>v!=null?[xPos(i),sy(v)]:null).filter(Boolean),'#dc2626',1.3);
+      poly(closes.map((v,i)=>v!=null?[xPos(i),sy(v)]:null).filter(Boolean),'#343a40',1.8);
+      // Segnali
+      let ps=null;
+      sigs.forEach((s,i)=>{if(!s||s===ps||closes[i]==null)return;const col={BUY3:'#2f9e44',BUY2:'#1971c2',WATCH:'#e67700',SELL:'#c92a2a'}[s]||'#868e96';const up=s==='BUY3'||s==='BUY2';tri(xPos(i),sy(closes[i])+(up?10:-10),4,up,col);ps=s;});
+      // Prezzo attuale
+      const lc=closes.filter(v=>v!=null).at(-1);
+      const ly=sy(lc);
+      rect(PAD.l+PW+2,ly-6,36,12,'#1971c2');
+      txt(PAD.l+PW+20,ly+3,lc<10?lc.toFixed(4):lc.toFixed(2),'#fff',7);
+    }
+
+    if(panel.id==='ao'){
+      const vals=ao.filter(v=>v!=null);
+      if(vals.length){
+        const mn=Math.min(...vals,0), mx=Math.max(...vals,0);
+        const zero=scY(0,mn,mx,yTop,h);
+        const bW=Math.max(1,PW/N-.5);
+        line(PAD.l,zero,PAD.l+PW,zero,'#ced4da',1);
+        ao.forEach((v,i)=>{if(v==null)return;const prev=ao[i-1]??v;const col=v>=prev?'#2f9e44':'#c92a2a';const y0=scY(v,mn,mx,yTop,h);const bh=Math.abs(y0-zero)||1;rect(xPos(i)-bW/2,Math.min(y0,zero),bW,bh,col,.85);});
+        txt(PAD.l-3,yTop+7,'AO','#adb5bd',6.5,'end');
+      }
+    }
+
+    if(panel.id==='rsi'){
+      const sy=v=>scY(v,0,100,yTop,h);
+      rect(PAD.l,sy(70),PW,sy(30)-sy(70),'#fff9e6',.5);
+      [70,50,30].forEach(lv=>{line(PAD.l,sy(lv),PAD.l+PW,sy(lv),lv===50?'#ced4da':'#dee2e6',.8,lv!==50?'3,3':'');txt(PAD.l-3,sy(lv)+3,lv,'#adb5bd',6.5,'end');});
+      // Fill RSI5 vs RSI14
+      const rp=[];for(let i=0;i<N;i++)if(r14[i]!=null&&r5[i]!=null)rp.push(i);
+      if(rp.length>1){
+        let rs2=rp[0],rb=r5[rp[0]]>r14[rp[0]];
+        const dr=(fr,to,bull)=>{const tp=[],bp=[];for(let i=fr;i<=to;i++){if(r14[i]==null||r5[i]==null)continue;tp.push([xPos(i),sy(bull?r5[i]:r14[i])]);bp.unshift([xPos(i),sy(bull?r14[i]:r5[i])]);}const pts=[...tp,...bp];if(pts.length<3)return;el('polygon',{points:pts.map(([x,y])=>`${x.toFixed(1)},${y.toFixed(1)}`).join(' '),fill:bull?'#2f9e44':'#c92a2a',opacity:'.08'});};
+        for(let ii=1;ii<rp.length;ii++){const i=rp[ii],bull=r5[i]>r14[i];if(bull!==rb||ii===rp.length-1){dr(rs2,rp[ii-(ii===rp.length-1?0:1)],rb);rs2=i;rb=bull;}}
+      }
+      poly(r14.map((v,i)=>v!=null?[xPos(i),sy(v)]:null).filter(Boolean),'#e67700',1.3);
+      poly(r5.map((v,i)=>v!=null?[xPos(i),sy(v)]:null).filter(Boolean),'#1971c2',1.1,'4,2');
+      // Cross markers
+      for(let i=1;i<N;i++){if(r14[i]==null||r5[i]==null||r14[i-1]==null||r5[i-1]==null)continue;if(r5[i-1]<=r14[i-1]&&r5[i]>r14[i])tri(xPos(i),sy((r5[i]+r14[i])/2)+5,3,true,'#2f9e44');if(r5[i-1]>=r14[i-1]&&r5[i]<r14[i])tri(xPos(i),sy((r5[i]+r14[i])/2)-5,3,false,'#c92a2a');}
+      // Valori attuali
+      const lr14=r14.filter(v=>v!=null).at(-1), lr5=r5.filter(v=>v!=null).at(-1);
+      if(lr14!=null){rect(PAD.l+PW+2,sy(lr14)-5,24,10,'#e67700');txt(PAD.l+PW+14,sy(lr14)+3,lr14.toFixed(0),'#fff',6.5);}
+      if(lr5!=null){rect(PAD.l+PW+2,sy(lr5)-5,24,10,'#1971c2');txt(PAD.l+PW+14,sy(lr5)+3,lr5.toFixed(0),'#fff',6.5);}
+    }
+
+    // Date asse X (solo per ultimo pannello)
+    if(panel.id==='rsi'){
+      const step=Math.max(1,Math.floor(N/6));
+      for(let i=0;i<N;i+=step) if(dates[i]) txt(xPos(i),totalH-PAD.b+10,dates[i].slice(5),'#adb5bd',7);
+    }
+
+    yOff+=h+GAP;
+  });
+
+  document.getElementById('popupChart').innerHTML='';
+  document.getElementById('popupChart').appendChild(svg);
+}
+
+// Aggiungi listener ai ticker nella tabella
+function attachTickerHover() {
+  document.querySelectorAll('.ticker-link').forEach(el => {
+    el.addEventListener('mouseenter', e => {
+      clearTimeout(popupTimer);
+      popupTimer = setTimeout(() => showChartPopup(el.dataset.ticker, el.dataset.yahoo, e), 300);
+    });
+    el.addEventListener('mousemove', e => {
+      if(popupVisible) positionPopup(document.getElementById('chartPopup'), e);
+    });
+    el.addEventListener('mouseleave', () => {
+      clearTimeout(popupTimer);
+      setTimeout(hideChartPopup, 200);
+    });
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      window.open('https://giorgiogoldoni.github.io/raptor-leva/RAPTOR_Chart_Leva.html?t=' + el.dataset.yahoo.replace('.','_'), '_blank');
+    });
+  });
+}
+
 </script>
+
+<div class="chart-popup" id="chartPopup">
+  <div class="chart-popup-header">
+    <span id="popupTicker" style="font-weight:700;font-size:14px;letter-spacing:2px"></span>
+    <span id="popupNome" style="opacity:.7;font-size:10px"></span>
+    <span style="flex:1"></span>
+    <span id="popupZona" style="font-size:10px"></span>
+  </div>
+  <div class="chart-popup-body">
+    <div id="popupChart"><div class="chart-loading">⏳ Caricamento grafico...</div></div>
+  </div>
+</div>
+
 </body>
 </html>
