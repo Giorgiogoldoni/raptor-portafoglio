@@ -1,32 +1,45 @@
 {
-  "posizioni": [
+  "posizioni": [],
+  "storico": [
     {
       "ticker": "3PYP",
-      "yahoo": "3PYP.MI",
       "nome": "Leverage Shares 3x PayPal ETP",
       "carico": 1.6,
+      "vendita": 1.66,
       "quantita": 100,
       "data_acquisto": "2026-07-02",
-      "note": ""
+      "data_chiusura": "2026-07-03",
+      "note": "venduto con profitto"
     },
     {
       "ticker": "3LMS",
-      "yahoo": "3LMS.MI",
-      "nome": "Leverage Shares 3x LVMH ETP",
+      "nome": "Leverage Shares 3x Microsoft ETP",
       "carico": 9.2,
+      "vendita": 10.81,
       "quantita": 100,
       "data_acquisto": "2026-07-02",
-      "note": ""
+      "data_chiusura": "2026-07-03",
+      "note": "venduto con profitto — alert STOP"
     },
     {
       "ticker": "3OIS",
-      "yahoo": "3OIS.MI",
       "nome": "WisdomTree WTI Crude Oil 3x Short",
       "carico": 1.89,
+      "vendita": 2.93,
       "quantita": 100,
       "data_acquisto": "2026-07-02",
-      "note": ""
+      "data_chiusura": "2026-07-03",
+      "note": "venduto con profitto"
+    },
+    {
+      "ticker": "BAYN",
+      "nome": "Bayer AG",
+      "carico": 42.0,
+      "vendita": 45.0,
+      "quantita": 100,
+      "data_acquisto": "2026-07-02",
+      "data_chiusura": "2026-07-03",
+      "note": "venduto con profitto"
     }
-  ],
-  "storico": []
+  ]
 }
