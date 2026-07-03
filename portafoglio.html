@@ -27,6 +27,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-si
 .btn.green{background:#d3f9d8;border-color:var(--green);color:var(--green)}
 .btn.green:hover{background:var(--green);color:#fff}
 .btn.red{background:#ffe3e3;border-color:var(--red);color:var(--red)}
+.btn.refresh{background:#e7f5ff;border-color:#1971c2;color:#1971c2}
+.btn.refresh:hover{background:#1971c2;color:#fff}
+.btn.refresh.loading{background:#f1f3f5;border-color:#ced4da;color:#868e96;cursor:wait}
+.refresh-spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
 /* KPI */
 .kpi-row{display:flex;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap}
@@ -99,6 +104,7 @@ td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
   <div class="logo">📋 RAPTOR<span> PORTAFOGLIO</span></div>
   <div class="spacer"></div>
   <span class="ts" id="tsLabel">—</span>
+  <button class="btn refresh" id="refreshBtn" onclick="triggerRefresh()">🔄 Aggiorna ora</button>
   <button class="btn green" onclick="openModal()">+ Aggiungi</button>
   <button class="btn" onclick="exportExcel()">📥 Excel</button>
   <a class="btn" href="https://giorgiogoldoni.github.io/raptor-leva/RAPTOR_Leva.html">⚡ Leva</a>
@@ -461,6 +467,54 @@ function exportExcel() {
 // ── SHA per aggiornamenti ─────────────────────────
 fetch('https://api.github.com/repos/Giorgiogoldoni/raptor-portafoglio/contents/portafoglio.json')
   .then(r=>r.json()).then(d=>{ pfSha = d.sha || ''; });
+
+
+// ═══ AGGIORNA ORA ══════════════════════════════
+async function triggerRefresh() {
+  const btn = document.getElementById('refreshBtn');
+  const GH_TOKEN = prompt('Token GitHub per lanciare il workflow:');
+  if (!GH_TOKEN) return;
+
+  btn.classList.add('loading');
+  btn.innerHTML = '<span class="refresh-spin">⏳</span> Avvio workflow...';
+
+  try {
+    // Lancia raptor_leva workflow
+    const r = await fetch('https://api.github.com/repos/Giorgiogoldoni/raptor-leva/actions/workflows/raptor_leva.yml/dispatches', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + GH_TOKEN,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ref: 'main' })
+    });
+
+    if (r.status === 204) {
+      btn.innerHTML = '✅ Workflow avviato!';
+      btn.style.background = '#d3f9d8';
+      btn.style.borderColor = '#2f9e44';
+      btn.style.color = '#2f9e44';
+      // Ricarica i dati dopo 90 secondi (tempo medio del workflow)
+      setTimeout(() => {
+        btn.innerHTML = '🔄 Ricarico dati...';
+        init().then(() => {
+          btn.classList.remove('loading');
+          btn.innerHTML = '🔄 Aggiorna ora';
+          btn.style = '';
+        });
+      }, 90000);
+    } else {
+      throw new Error('Status ' + r.status);
+    }
+  } catch(e) {
+    btn.classList.remove('loading');
+    btn.innerHTML = '❌ Errore — riprova';
+    btn.style.background = '#ffe3e3';
+    setTimeout(() => { btn.innerHTML = '🔄 Aggiorna ora'; btn.style = ''; }, 3000);
+  }
+}
 
 init();
 setInterval(init, 5*60*1000); // Refresh ogni 5 minuti
