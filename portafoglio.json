@@ -1,5 +1,54 @@
 {
-  "posizioni": [],
+  "posizioni": [
+    {
+      "ticker": "3WHL",
+      "yahoo": "3WHL.MI",
+      "nome": "WisdomTree Wheat 3x Daily Leveraged",
+      "carico": 0.23,
+      "quantita": 100,
+      "data_acquisto": "2026-07-03"
+    },
+    {
+      "ticker": "BAYN",
+      "yahoo": "BAYN.DE",
+      "nome": "Bayer AG",
+      "carico": 42.81,
+      "quantita": 100,
+      "data_acquisto": "2026-07-03"
+    },
+    {
+      "ticker": "LCOP",
+      "yahoo": "LCOP.MI",
+      "nome": "WisdomTree Copper 2x Daily Leveraged",
+      "carico": 21.11,
+      "quantita": 100,
+      "data_acquisto": "2026-07-03"
+    },
+    {
+      "ticker": "2PAL",
+      "yahoo": "2PAL.MI",
+      "nome": "WisdomTree Palladium 2x Daily Leveraged",
+      "carico": 6.53,
+      "quantita": 1,
+      "data_acquisto": "2026-07-03"
+    },
+    {
+      "ticker": "LCOC",
+      "yahoo": "LCOC.MI",
+      "nome": "WisdomTree Cocoa 2x Daily Leveraged",
+      "carico": 12.08,
+      "quantita": 1,
+      "data_acquisto": "2026-07-03"
+    },
+    {
+      "ticker": "3OIS",
+      "yahoo": "3OIS.MI",
+      "nome": "WisdomTree WTI Crude Oil 3x Daily Short",
+      "carico": 1.89,
+      "quantita": 100,
+      "data_acquisto": "2026-07-03"
+    }
+  ],
   "storico": [
     {
       "ticker": "3PYP",
