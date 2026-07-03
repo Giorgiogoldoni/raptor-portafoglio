@@ -104,7 +104,8 @@ td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
   <div class="logo">📋 RAPTOR<span> PORTAFOGLIO</span></div>
   <div class="spacer"></div>
   <span class="ts" id="tsLabel">—</span>
-  <button class="btn refresh" id="refreshBtn" onclick="triggerRefresh()">🔄 Aggiorna ora</button>
+  <button class="btn refresh" id="refreshBtn" onclick="refreshDati()">🔄 Aggiorna</button>
+  <span id="refreshTs" style="font-size:10px;color:var(--text3);font-family:var(--font-mono)"></span>
   <button class="btn green" onclick="openModal()">+ Aggiungi</button>
   <button class="btn" onclick="exportExcel()">📥 Excel</button>
   <a class="btn" href="https://giorgiogoldoni.github.io/raptor-leva/RAPTOR_Leva.html">⚡ Leva</a>
@@ -469,55 +470,35 @@ fetch('https://api.github.com/repos/Giorgiogoldoni/raptor-portafoglio/contents/p
   .then(r=>r.json()).then(d=>{ pfSha = d.sha || ''; });
 
 
-// ═══ AGGIORNA ORA ══════════════════════════════
-async function triggerRefresh() {
+// ═══ AGGIORNA DATI (no token) ══════════════════
+function setRefreshTs() {
+  const now = new Date();
+  const it = now.toLocaleTimeString('it-IT', {
+    timeZone: 'Europe/Rome',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
+  const el = document.getElementById('refreshTs');
+  if(el) el.textContent = '🕐 ' + it;
+}
+
+async function refreshDati() {
   const btn = document.getElementById('refreshBtn');
-  const GH_TOKEN = prompt('Token GitHub per lanciare il workflow:');
-  if (!GH_TOKEN) return;
-
   btn.classList.add('loading');
-  btn.innerHTML = '<span class="refresh-spin">⏳</span> Avvio workflow...';
-
+  btn.textContent = '⏳ Carico...';
   try {
-    // Lancia raptor_leva workflow
-    const r = await fetch('https://api.github.com/repos/Giorgiogoldoni/raptor-leva/actions/workflows/raptor_leva.yml/dispatches', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + GH_TOKEN,
-        'Accept': 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ref: 'main' })
-    });
-
-    if (r.status === 204) {
-      btn.innerHTML = '✅ Workflow avviato!';
-      btn.style.background = '#d3f9d8';
-      btn.style.borderColor = '#2f9e44';
-      btn.style.color = '#2f9e44';
-      // Ricarica i dati dopo 90 secondi (tempo medio del workflow)
-      setTimeout(() => {
-        btn.innerHTML = '🔄 Ricarico dati...';
-        init().then(() => {
-          btn.classList.remove('loading');
-          btn.innerHTML = '🔄 Aggiorna ora';
-          btn.style = '';
-        });
-      }, 90000);
-    } else {
-      throw new Error('Status ' + r.status);
-    }
+    await init();
+    setRefreshTs();
+    btn.classList.remove('loading');
+    btn.textContent = '🔄 Aggiorna';
   } catch(e) {
     btn.classList.remove('loading');
-    btn.innerHTML = '❌ Errore — riprova';
-    btn.style.background = '#ffe3e3';
-    setTimeout(() => { btn.innerHTML = '🔄 Aggiorna ora'; btn.style = ''; }, 3000);
+    btn.textContent = '❌ Errore';
+    setTimeout(() => { btn.textContent = '🔄 Aggiorna'; }, 2000);
   }
 }
 
-init();
-setInterval(init, 5*60*1000); // Refresh ogni 5 minuti
+init().then(setRefreshTs);
+setInterval(() => { init().then(setRefreshTs); }, 5*60*1000); // Refresh ogni 5 minuti
 
 
 // ═══ CHART POPUP ══════════════════════════════════
