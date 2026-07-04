@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>📋 RAPTOR Portafoglio</title>
+<title>📋 RAPTOR Trader</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
@@ -222,6 +222,7 @@ async function init() {
     (leva.data || []).forEach(d => { levaMap[d.ticker] = d; });
     document.getElementById('tsLabel').textContent = leva.timestamp_it || '';
     render();
+    setTimeout(attachTickerHover, 200);
   } catch(e) {
     document.querySelector('#posizioniBody').innerHTML =
       `<tr><td colspan="15" style="text-align:center;padding:30px;color:var(--text3)">❌ Errore: ${e.message}</td></tr>`;
@@ -542,8 +543,12 @@ async function loadPopupChart(ticker, yahoo) {
       `<span style="background:${zonaColor};color:#fff;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700">${zona}</span>` : '';
     drawPopupSVG(d);
   } catch(e) {
+    const tv = yahoo.replace('_MI','').replace('_DE','').replace('_PA','').replace('_L','');
+    const tvEx = yahoo.includes('_DE') ? 'XETR' : yahoo.includes('_PA') ? 'EURONEXT' : yahoo.includes('_L') ? 'LSE' : 'MIL';
     document.getElementById('popupChart').innerHTML =
-      '<div class="chart-loading">❌ Grafico non disponibile — eseguire prima il workflow chart</div>';
+      '<div class="chart-loading" style="padding:20px">📊 Grafico non disponibile in locale<br><br>' +
+      '<a href="https://www.tradingview.com/chart/?symbol=' + tvEx + ':' + tv + '" target="_blank" ' +
+      'style="color:var(--accent);font-weight:700">Apri su TradingView →</a></div>';
   }
 }
 
