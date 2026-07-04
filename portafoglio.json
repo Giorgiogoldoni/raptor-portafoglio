@@ -13,10 +13,10 @@
       "ticker": "2PAL",
       "yahoo": "2PAL.MI",
       "nome": "WisdomTree Palladium 2x Daily",
-      "carico": 6.53,
-      "quantita": 1,
+      "carico": 7.29,
+      "quantita": 1000,
       "data_acquisto": "2026-07-03",
-      "note": "1 quota — trading veloce"
+      "note": ""
     },
     {
       "ticker": "LCOC",
@@ -44,6 +44,15 @@
       "quantita": 100,
       "data_acquisto": "2026-07-03",
       "note": ""
+    },
+    {
+      "ticker": "3WHL",
+      "yahoo": "3WHL.MI",
+      "nome": "WisdomTree Wheat 3x Daily Leveraged",
+      "carico": 0.23,
+      "quantita": 50000,
+      "data_acquisto": "2026-07-03",
+      "note": "accumulo — cercare livello più basso"
     }
   ],
   "storico": [
@@ -97,5 +106,6 @@
       "data_chiusura": "2026-07-03",
       "note": "studio accumulo — cercare livello d'ingresso più basso"
     }
-  ]
+  ],
+  "watchlist": []
 }
