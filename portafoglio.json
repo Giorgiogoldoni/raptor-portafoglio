@@ -53,6 +53,15 @@
       "quantita": 100,
       "data_acquisto": "2026-07-15",
       "note": ""
+    },
+    {
+      "ticker": "3WHL",
+      "yahoo": "3WHL.MI",
+      "nome": "WisdomTree Wheat 3x Daily Leveraged",
+      "carico": 1.98,
+      "quantita": 70000,
+      "data_acquisto": "2026-07-15",
+      "note": ""
     }
   ],
   "watchlist": [],
