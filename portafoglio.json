@@ -10,15 +10,6 @@
       "note": "1 quota — trading veloce"
     },
     {
-      "ticker": "2PAL",
-      "yahoo": "2PAL.MI",
-      "nome": "WisdomTree Palladium 2x Daily",
-      "carico": 7.29,
-      "quantita": 1000,
-      "data_acquisto": "2026-07-03",
-      "note": ""
-    },
-    {
       "ticker": "LCOC",
       "yahoo": "LCOC.MI",
       "nome": "WisdomTree Cocoa 2x Daily Leveraged",
