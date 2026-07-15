@@ -145,12 +145,14 @@ td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
         <th>Score</th>
         <th>RSI14</th>
         <th>Alert</th>
-        <th>Data</th>
+        <th>Data Acquisto</th>
+        <th>1° Pallino</th>
+        <th>N. Pallini</th>
         <th></th>
       </tr>
     </thead>
     <tbody id="posizioniBody">
-      <tr><td colspan="15" style="text-align:center;padding:30px;color:var(--text3)">⏳ Caricamento...</td></tr>
+      <tr><td colspan="17" style="text-align:center;padding:30px;color:var(--text3)">⏳ Caricamento...</td></tr>
     </tbody>
   </table>
   </div>
@@ -205,6 +207,7 @@ const PF_URL  = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-portafo
 const LEVA_URL= 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-leva/main/raptor_leva.json';
 const GH_API  = 'https://api.github.com/repos/Giorgiogoldoni/raptor-portafoglio/contents/portafoglio.json';
 
+let sarCache = {}; // { ticker: {date, count} } — dati SAR (baff), fetch una sola volta per ticker
 let pfData = null;  // portafoglio.json
 let levaMap = {};   // ticker -> dati live
 let pfSha   = '';   // SHA per update
@@ -225,7 +228,7 @@ async function init() {
     setTimeout(attachTickerHover, 200);
   } catch(e) {
     document.querySelector('#posizioniBody').innerHTML =
-      `<tr><td colspan="15" style="text-align:center;padding:30px;color:var(--text3)">❌ Errore: ${e.message}</td></tr>`;
+      `<tr><td colspan="17" style="text-align:center;padding:30px;color:var(--text3)">❌ Errore: ${e.message}</td></tr>`;
   }
 }
 
@@ -294,6 +297,8 @@ function render() {
       <td class="mono right">${typeof rsi==='number'?rsi.toFixed(1):rsi}</td>
       <td>${alertBadge}</td>
       <td style="font-size:10px;color:var(--text3)">${p.data_acquisto||'—'}</td>
+      <td class="mono" style="font-size:10px;color:var(--text3)" id="sarDate-${p.ticker}">${sarCache[p.ticker] ? sarCache[p.ticker].date : '…'}</td>
+      <td class="mono right" id="sarCount-${p.ticker}">${sarCache[p.ticker] ? sarCache[p.ticker].count : '…'}</td>
       <td>
         <button class="btn" style="padding:2px 8px;font-size:9px" onclick="openChiudi('${p.ticker}')">Chiudi</button>
         <button class="btn red" style="padding:2px 8px;font-size:9px;margin-left:3px" onclick="rimuovi('${p.ticker}')">✕</button>
@@ -302,7 +307,9 @@ function render() {
   }).join('');
 
   document.getElementById('posizioniBody').innerHTML = rows ||
-    '<tr><td colspan="15" style="text-align:center;padding:30px;color:var(--text3)">Nessuna posizione — clicca "+ Aggiungi" per iniziare</td></tr>';
+    '<tr><td colspan="17" style="text-align:center;padding:30px;color:var(--text3)">Nessuna posizione — clicca "+ Aggiungi" per iniziare</td></tr>';
+
+  updateSarInfo(posizioni);
 
   // KPI
   const totPL = totVal - totInv;
@@ -501,6 +508,36 @@ async function refreshDati() {
 init().then(setRefreshTs);
 setInterval(() => { init().then(setRefreshTs); }, 5*60*1000); // Refresh ogni 5 minuti
 
+
+// ═══ SAR — data primo pallino + numero pallini (cache per ticker) ══
+// baff nel chart JSON è un contatore barre-da-flip: segno=direzione, |valore|=n. barre dal cambio SAR
+function updateSarInfo(posizioni) {
+  posizioni.forEach(p => {
+    if(sarCache[p.ticker]) return; // già in cache, cella già popolata dal render()
+    fetchSarInfo(p.ticker, p.yahoo);
+  });
+}
+
+async function fetchSarInfo(ticker, yahoo) {
+  const fname = (yahoo || ticker + '.MI').replace('.', '_') + '.json';
+  let info = { date: '—', count: '—' };
+  try {
+    const d = await fetch(CHARTS_BASE_PF + fname + '?t=' + Date.now()).then(r => r.json());
+    const baffArr = d.baff  || [];
+    const dates   = d.dates || [];
+    const last = baffArr.length ? baffArr[baffArr.length - 1] : null;
+    if(last != null) {
+      const n = Math.abs(last);
+      const idx = Math.max(0, dates.length - n);
+      info = { date: dates[idx] || '—', count: n };
+    }
+  } catch(e) { /* resta '—' se il file non esiste o è malformato */ }
+  sarCache[ticker] = info;
+  const dEl = document.getElementById('sarDate-' + ticker);
+  const cEl = document.getElementById('sarCount-' + ticker);
+  if(dEl) dEl.textContent = info.date;
+  if(cEl) cEl.textContent = info.count;
+}
 
 // ═══ CHART POPUP ══════════════════════════════════
 const CHARTS_BASE_PF = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-leva/main/data/charts/';
