@@ -53,15 +53,6 @@
       "quantita": 100,
       "data_acquisto": "2026-07-15",
       "note": ""
-    },
-    {
-      "ticker": "3WHO",
-      "yahoo": "3WHO.MI",
-      "nome": "",
-      "carico": 1.98,
-      "quantita": 70000,
-      "data_acquisto": "2026-07-15",
-      "note": ""
     }
   ],
   "watchlist": [],
