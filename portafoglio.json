@@ -53,15 +53,6 @@
       "quantita": 70000,
       "data_acquisto": "2026-07-15",
       "note": ""
-    },
-    {
-      "ticker": "2PAL",
-      "yahoo": "2PAL.MI",
-      "nome": "WisdomTree Palladium 2x Daily Leveraged",
-      "carico": 7.95,
-      "quantita": 1000,
-      "data_acquisto": "2026-07-15",
-      "note": ""
     }
   ],
   "watchlist": [],
