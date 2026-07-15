@@ -53,6 +53,15 @@
       "quantita": 50000,
       "data_acquisto": "2026-07-03",
       "note": "accumulo — cercare livello più basso"
+    },
+    {
+      "ticker": "3LMS",
+      "yahoo": "3LMS.MI",
+      "nome": "",
+      "carico": 10,
+      "quantita": 100,
+      "data_acquisto": "2026-07-15",
+      "note": ""
     }
   ],
   "watchlist": [],
@@ -90,8 +99,8 @@
     {
       "ticker": "BAYN",
       "nome": "Bayer AG",
-      "carico": 42.0,
-      "vendita": 45.0,
+      "carico": 42,
+      "vendita": 45,
       "quantita": 100,
       "data_acquisto": "2026-07-02",
       "data_chiusura": "2026-07-03",
