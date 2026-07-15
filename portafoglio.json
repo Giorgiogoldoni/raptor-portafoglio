@@ -46,15 +46,6 @@
       "note": ""
     },
     {
-      "ticker": "3WHL",
-      "yahoo": "3WHL.MI",
-      "nome": "WisdomTree Wheat 3x Daily Leveraged",
-      "carico": 0.23,
-      "quantita": 50000,
-      "data_acquisto": "2026-07-03",
-      "note": "accumulo — cercare livello più basso"
-    },
-    {
       "ticker": "3LM",
       "yahoo": "3LM.MI",
       "nome": "",
@@ -66,6 +57,15 @@
   ],
   "watchlist": [],
   "storico": [
+    {
+      "ticker": "3WHL",
+      "nome": "WisdomTree Wheat 3x Daily Leveraged",
+      "carico": 0.23,
+      "vendita": 15,
+      "quantita": 50000,
+      "data_acquisto": "2026-07-03",
+      "data_chiusura": "2026-07-15"
+    },
     {
       "ticker": "3PYP",
       "nome": "Leverage Shares 3x PayPal ETP",
