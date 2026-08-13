@@ -1,11 +1,11 @@
 {
   "LCOP": {
-    "zona": "GRIGIA",
-    "last_sent": "2026-08-13T09:57:17.343309"
+    "zona": "LONG_CONF",
+    "last_sent": "2026-08-13T12:06:34.217712"
   },
   "3WHL": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-13T11:00:18.416641"
+    "zona": "STOP",
+    "last_sent": "2026-08-13T12:06:34.217712"
   },
   "LCOC": {
     "zona": "STOP",
