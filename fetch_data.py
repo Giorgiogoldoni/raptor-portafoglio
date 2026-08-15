@@ -25,8 +25,8 @@ TICKERS = [
   {"t":"LCOP","y":"LCOP.MI","n":"WisdomTree Copper 2x Daily Leveraged"},
   {"t":"LCOC","y":"LCOC.MI","n":"WisdomTree Cocoa 2x Daily Leveraged"},
   {"t":"BAYN","y":"BAYN.DE","n":"Bayer AG"},
-  {"t":"3OIS","y":"3OIS.MI","n":"WisdomTree WTI Crude Oil 3x Short"},
-  {"t":"3LM","y":"3LM.MI","n":"3LM"},
+  {"t":"3OIS","y":"3SOI.DE","n":"WisdomTree WTI Crude Oil 3x Short"},
+  {"t":"3LM","y":"3LMS.MI","n":"WisdomTree Microsoft 3x Daily Leveraged"},
   {"t":"3WHL","y":"3WHL.MI","n":"WisdomTree Wheat 3x Daily Leveraged"},
   {"t":"2PAL","y":"2PAL.MI","n":"WisdomTree Palladium 2x Daily Leveraged"},
   {"t":"EXUS","y":"EXUS.MI","n":"Xtrackers MSCI World ex USA UCITS ETF 1C"},
@@ -65,13 +65,13 @@ TICKERS = [
   {"t":"BATT","y":"BATT.MI","n":"L&G Battery Value-Chain UCITS ETF"},
   {"t":"SUSW","y":"SUSW.MI","n":"iShares MSCI World SRI UCITS ETF EUR (Acc)"},
   {"t":"EUNY","y":"EUNY.DE","n":"iShares EM Dividend UCITS ETF USD (Dist)"},
-  {"t":"LYXLVE","y":"LYXLVE.DE","n":"Amundi EURO STOXX 50 Daily (2X) Leveraged UCITS ETF"},
-  {"t":"SDGPEX","y":"SDGPEX.DE","n":"iShares STOXX Gl.Select Dividend 100 UCITS ETF(DE)"},
+  {"t":"LYXLVE","y":"DJLEV.MI","n":"Amundi EURO STOXX 50 Daily (2X) Leveraged UCITS ETF"},
+  {"t":"SDGPEX","y":"ISPA.F","n":"iShares STOXX Gl.Select Dividend 100 UCITS ETF(DE)"},
 ]
 
 VIX_TICKERS = [
-    {"t": "VIX_USA",   "y": "^VIX"},
-    {"t": "VSTOXX_EU", "y": "^V2TX"},
+    {"t": "VIX_USA", "y": "^VIX"},
+    # VSTOXX (^V2TX) non è disponibile su Yahoo Finance (mai stato, non solo delisted) — regime calcolato solo su VIX
 ]
 
 CHARTS_DIR = 'data/charts'
@@ -175,8 +175,12 @@ SCORE_MIN = 65
 VIX_BLOCK, VIX_ONLY_CONF = 28, 22
 
 def get_regime_vix(vix, vstoxx):
-    v = vix if vix else 20; vs = vstoxx if vstoxx else 20
-    avg = (v+vs)/2
+    if vix is None and vstoxx is None:
+        avg = 20  # nessun dato disponibile, fallback neutro
+    elif vstoxx is None:
+        avg = vix  # solo VIX disponibile (caso normale: VSTOXX non è su Yahoo)
+    else:
+        avg = (vix + vstoxx) / 2
     if avg < 15: return {'regime':'CALMA','mult':1.00}
     if avg < 20: return {'regime':'NORMALE','mult':0.95}
     if avg < 25: return {'regime':'ATTENZIONE','mult':0.85}
