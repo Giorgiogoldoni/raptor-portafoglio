@@ -13,10 +13,9 @@ import json, os, sys, smtplib
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import urllib.request
 
-LEVA_URL = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-portafoglio/main/raptor_portafoglio_live.json'  # autonomo
-PF_URL   = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-portafoglio/main/portafoglio.json'
+PF_LOCAL   = 'portafoglio.json'
+LIVE_LOCAL = 'raptor_portafoglio_live.json'
 STOP_LOSS_PCT = -10.0  # alert se P&L < -10%
 
 STATE_FILE     = 'alert_state.json'
@@ -35,9 +34,9 @@ def save_state(state):
     with open(STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(state, f, ensure_ascii=False, indent=2)
 
-def fetch_json(url):
-    with urllib.request.urlopen(url, timeout=15) as r:
-        return json.loads(r.read().decode())
+def load_json_local(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 def send_alert(subject, html):
     EMAIL_USER = os.environ.get('EMAIL_USER', '')
@@ -106,10 +105,13 @@ def main():
     print(f"RAPTOR Alert Check — {now.strftime('%Y-%m-%d %H:%M')}")
 
     try:
-        pf   = fetch_json(PF_URL)
-        leva = fetch_json(LEVA_URL)
+        pf   = load_json_local(PF_LOCAL)
+        leva = load_json_local(LIVE_LOCAL)
+    except FileNotFoundError as e:
+        print(f"❌ File dati non trovato (fetch_data.py non ha generato output?): {e}")
+        sys.exit(1)
     except Exception as e:
-        print(f"❌ Errore fetch dati: {e}")
+        print(f"❌ Errore lettura dati locali: {e}")
         sys.exit(1)
 
     leva_map = {d['ticker']: d for d in leva.get('data', [])}
