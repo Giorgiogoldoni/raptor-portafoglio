@@ -6,5 +6,49 @@
   "NCLR": {
     "zona": "LONG_CONF",
     "last_sent": "2026-08-15T07:27:15.464480"
+  },
+  "LCOP": {
+    "zona": "LONG_CONF",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "LCOC": {
+    "zona": "STOP",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "BAYN": {
+    "zona": "USCITA",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "3WHL": {
+    "zona": "STOP",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "2PAL": {
+    "zona": "STOP",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "HSTE": {
+    "zona": "USCITA",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "XWTS": {
+    "zona": "USCITA",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "INDO": {
+    "zona": "GRIGIA",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "D5BI": {
+    "zona": "USCITA",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "LTAM": {
+    "zona": "STOP",
+    "last_sent": "2026-08-15T07:35:56.670536"
+  },
+  "EUNY": {
+    "zona": "USCITA",
+    "last_sent": "2026-08-15T07:35:56.670536"
   }
 }
