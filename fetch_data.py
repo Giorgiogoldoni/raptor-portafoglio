@@ -168,19 +168,6 @@ def calc_sar_arr(high, low, step=0.03, max_af=0.25):
         bull_arr[i] = bull
     return sar, bull_arr
 
-def get_zona(price, kf, ks):
-    if kf is None or ks is None: return 'ND'
-    if price > kf and kf > ks: return 'LONG_CONF'
-    elif price > kf and price > ks: return 'LONG_EARLY'
-    elif price > ks and price < kf: return 'GRIGIA'
-    elif price < ks:
-        gap = (ks-price)/ks*100 if ks>0 else 0
-        return 'STOP' if gap > 2 else 'USCITA'
-    return 'GRIGIA'
-
-VOL_MIN_CONF, VOL_MIN_EARLY = 2.0, 1.5
-BAF_MIN_CONF, BAF_MIN_EARLY = 3, 3
-ER_MIN, KAMA_GAP_MIN = 0.35, 0.003
 SCORE_MIN = 65
 VIX_BLOCK, VIX_ONLY_CONF = 28, 22
 
@@ -197,34 +184,61 @@ def get_regime_vix(vix, vstoxx):
     if avg < 30: return {'regime':'STRESS','mult':0.70}
     return {'regime':'PAURA','mult':0.50}
 
-def get_segnale(zona, ao, vol_ratio, er, baf, kf, ks, regime, sar_bull):
-    if regime in ('STRESS','PAURA'):
-        if zona=='STOP': return 'STOP'
-        if zona=='USCITA': return 'USCITA'
-        return ''
-    kama_gap_ok = True
-    if kf and ks and ks>0:
-        kama_gap_ok = abs(kf-ks)/ks >= KAMA_GAP_MIN
-    if zona=='LONG_CONF' and ao>0 and vol_ratio>=VOL_MIN_CONF and baf>=BAF_MIN_CONF and er>=ER_MIN and kama_gap_ok and sar_bull:
-        return 'LONG'
-    elif zona=='LONG_EARLY' and ao>0 and vol_ratio>=VOL_MIN_EARLY and baf>=BAF_MIN_EARLY and er>=ER_MIN and kama_gap_ok and regime!='ATTENZIONE':
-        return 'EARLY'
-    elif zona in ('LONG_CONF','LONG_EARLY'):
-        return 'WATCH'
-    elif zona=='STOP': return 'STOP'
-    elif zona=='USCITA': return 'USCITA'
-    elif zona=='GRIGIA': return 'ATTENZIONE'
-    return ''
+# ═══ MOTORE SEGNALI v2 — SAR flip + AO + incroci RSI ═══
+# BUY (una qualsiasi):
+#   1) Primo pallino SAR rialzista (flip) + AO in crescita da 2 barre (oggi>ieri>l'altro ieri)
+#   2) Primo pallino SAR rialzista (flip) + prezzo taglia al rialzo la KAMA veloce
+#   3) RSI5 incrocia al rialzo RSI14 + SAR rialzista (flip fresco o già in corso da alcune barre)
+# EXIT (una qualsiasi):
+#   1) Primo pallino SAR ribassista (flip)
+#   2) RSI5 incrocia al ribasso RSI14
+# Volume/ER/baffetti NON bloccano più il segnale: restano solo nello score come indicatori di qualità.
+def cross_up(a_prev, b_prev, a_now, b_now):
+    if a_prev is None or b_prev is None or a_now is None or b_now is None: return False
+    return a_prev <= b_prev and a_now > b_now
 
-def calc_score(zona, ao, vol_ratio, er, baf, regime_mult):
-    base = 0
-    if zona=='LONG_CONF': base=60
-    elif zona=='LONG_EARLY': base=40
-    elif zona=='GRIGIA': base=20
+def cross_down(a_prev, b_prev, a_now, b_now):
+    if a_prev is None or b_prev is None or a_now is None or b_now is None: return False
+    return a_prev >= b_prev and a_now < b_now
+
+def build_segnale_arr(close, kama_fast, sar_bull_arr, ao_arr, rsi_arr, rsi5_arr):
+    n = len(close)
+    segnale = ['WATCH'] * n
+    in_position = False
+    for i in range(2, n):
+        sar_flip_up   = sar_bull_arr[i] and not sar_bull_arr[i-1]
+        sar_flip_down = (not sar_bull_arr[i]) and sar_bull_arr[i-1]
+        ao_growing_2  = (ao_arr[i] is not None and ao_arr[i-1] is not None and ao_arr[i-2] is not None
+                         and ao_arr[i] > ao_arr[i-1] > ao_arr[i-2])
+        kama_cross_up = cross_up(close[i-1], kama_fast[i-1], close[i], kama_fast[i])
+        rsi_cross_up   = cross_up(rsi5_arr[i-1], rsi_arr[i-1], rsi5_arr[i], rsi_arr[i])
+        rsi_cross_down = cross_down(rsi5_arr[i-1], rsi_arr[i-1], rsi5_arr[i], rsi_arr[i])
+
+        buy = ((sar_flip_up and ao_growing_2) or
+               (sar_flip_up and kama_cross_up) or
+               (rsi_cross_up and sar_bull_arr[i]))
+        exit_ = (sar_flip_down or rsi_cross_down)
+
+        if not in_position and buy:
+            in_position = True
+            segnale[i] = 'LONG'
+        elif in_position and exit_:
+            in_position = False
+            segnale[i] = 'USCITA'
+        elif in_position:
+            segnale[i] = 'LONG'
+        else:
+            segnale[i] = 'WATCH'
+    return segnale
+
+def calc_score(in_long, ao, vol_ratio, er, baf, regime_mult):
+    """Punteggio informativo (non blocca il segnale): premia AO positivo, volume sopra media,
+    ER alto, baffetti — usato solo per ordinare/qualificare, non per generare BUY/EXIT."""
+    base = 40 if in_long else 10
     base += min(baf,5)*6
-    base += (10 if ao>0 else 0)
-    base += min(vol_ratio,3)*5
-    base += er*20
+    base += (10 if ao and ao>0 else 0)
+    base += min(vol_ratio,3)*5 if vol_ratio else 0
+    base += (er*20 if er else 0)
     return round(base*regime_mult,1)
 
 def calc_vol_ratio_arr(volume):
@@ -279,24 +293,29 @@ def process_ticker(info, regime_mult, regime_name):
         sar_arr, sar_bull_arr = calc_sar_arr(high, low)
         vol_r_arr = calc_vol_ratio_arr(volume)
 
-        zona_arr = [get_zona(close[i], kama_fast[i], kama_slow[i]) for i in range(len(close))]
-        segnale_arr = []
-        for i in range(len(close)):
-            s = get_segnale(zona_arr[i], ao_arr[i] if i<len(ao_arr) else 0,
-                             vol_r_arr[i], er_arr[i], baff_arr[i],
-                             kama_fast[i], kama_slow[i], regime_name, sar_bull_arr[i])
-            segnale_arr.append(s)
+        segnale_arr = build_segnale_arr(close, kama_fast, sar_bull_arr, ao_arr, rsi_arr, rsi5_arr)
+        # zona = specchio semplificato del segnale, per compatibilità con campi esistenti del widget
+        zona_arr = ['LONG' if s == 'LONG' else ('USCITA' if s == 'USCITA' else 'WATCH') for s in segnale_arr]
 
         # ── stato live (ultima barra) ──
         kf, ks, lc = kama_fast[-1], kama_slow[-1], close[-1]
         zona = zona_arr[-1]
-        score = calc_score(zona, ao_arr[-1], vol_r_arr[-1], er_arr[-1], baff_arr[-1], regime_mult)
+        in_long = segnale_arr[-1] == 'LONG'
+        score = calc_score(in_long, ao_arr[-1], vol_r_arr[-1], er_arr[-1], baff_arr[-1], regime_mult)
         entry_date = '—'
-        cur_z = zona_arr[-1]
-        for idx in range(len(zona_arr)-2, max(0,len(zona_arr)-60), -1):
-            if zona_arr[idx] != cur_z:
-                entry_date = datetime.datetime.fromtimestamp(ts[idx+1]).strftime('%d/%m %H:%M')
-                break
+        cur_s = segnale_arr[-1]
+        if cur_s == 'USCITA':
+            entry_date = datetime.datetime.fromtimestamp(ts[-1]).strftime('%d/%m %H:%M')  # uscita è un evento del giorno stesso
+        elif cur_s == 'LONG':
+            for idx in range(len(segnale_arr)-1, max(0,len(segnale_arr)-252), -1):
+                if segnale_arr[idx] != 'LONG':
+                    entry_date = datetime.datetime.fromtimestamp(ts[idx+1]).strftime('%d/%m %H:%M')
+                    break
+        else:  # WATCH: mostra la data dell'ultimo evento (entrata o uscita) per riferimento
+            for idx in range(len(segnale_arr)-2, max(0,len(segnale_arr)-252), -1):
+                if segnale_arr[idx] in ('LONG','USCITA'):
+                    entry_date = datetime.datetime.fromtimestamp(ts[idx]).strftime('%d/%m %H:%M')
+                    break
 
         live = {
             'ticker': info['t'], 'yahoo': symbol, 'nome': info.get('n',''),
