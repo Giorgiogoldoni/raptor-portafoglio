@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    chart_widget.js — componente grafico standard scannerv3
    Adattato per raptor-portafoglio (portata da etp) da raptor-leva:
-   vocabolario segnali LONG/EARLY/ATTENZIONE/USCITA/STOP (KAMA
+   vocabolario segnali LONG/USCITA/WATCH (motore v2: SAR flip + AO
    fast/slow + SAR), timeframe giornalieri (1s/1m/3m/6m/1a/2a).
 
    Uso: la pagina host deve definire `const CHART_BASE = '...';`
@@ -17,19 +17,13 @@ let chartIndexCache=null;
 
 // ═══ SEGNALI CONFIG ═══
 const SIG_ICON = {
-  LONG:'🟢 LONG', EARLY:'🔵 EARLY',
-  ATTENZIONE:'🟠 ATTENZIONE', USCITA:'🟡 USCITA', STOP:'🔴 STOP',
-  WATCH:'⚪ WATCH',
+  LONG:'🟢 LONG', USCITA:'🔴 USCITA', WATCH:'⚪ WATCH',
 };
 const SIG_COLOR = {
-  LONG:'#1a7f37', EARLY:'#0969da',
-  ATTENZIONE:'#bc4c00', USCITA:'#9a6700', STOP:'#cf222e',
-  WATCH:'#57606a',
+  LONG:'#1a7f37', USCITA:'#cf222e', WATCH:'#57606a',
 };
 const SIG_BG = {
-  LONG:'#dafbe1', EARLY:'#ddf4ff',
-  ATTENZIONE:'#fff1e5', USCITA:'#fff8e6', STOP:'#ffebe9',
-  WATCH:'#f5f7fa',
+  LONG:'#dafbe1', USCITA:'#ffebe9', WATCH:'#f5f7fa',
 };
 
 // ═══ FETCH DATI DA data/charts/ ═══
@@ -322,21 +316,16 @@ function calcCrossKAMA(close,kama){
 }
 
 // ═══ CALCOLA SEGNALE (browser, fallback — usato solo se segnale_d precalcolato manca) ═══
-// Approssima zona/segnale del motore Python (doppia KAMA fast/slow). Non usa il regime VIX
-// (assunto NORMALE) essendo un fallback: la fonte di verità è sempre il dato precalcolato dal fetch.
+// Approssimazione del motore v2 Python (SAR flip + AO/KAMA/RSI cross): con la sola firma di
+// valori "ultima barra" disponibile qui non si può rilevare con precisione il "flip esatto"
+// né l'incrocio RSI5/RSI14 del giorno — usa SAR corrente + AO in miglioramento come proxy.
+// La fonte di verità resta sempre segnale_d precalcolato dal fetch Python.
 function calcSegnale(close,kama,sar,sarBull,ao,er,baff,mmAlign,rsi){
-  const lk=kama[kama.length-1],lc=close[close.length-1];
-  if(lk==null)return'WATCH';
-  const aboveKama=lc>lk;
   const aoArr=[...ao].filter(v=>v!=null);
   const aoImproving=aoArr.length>=2&&aoArr[aoArr.length-1]>aoArr[aoArr.length-2];
-
-  if(aboveKama&&sarBull&&aoImproving&&baff>=3&&er>=0.35)return'LONG';
-  if(aboveKama&&aoImproving&&baff>=3&&er>=0.35)return'EARLY';
-  if(!aboveKama&&!sarBull)return'STOP';
-  if(!aboveKama)return'USCITA';
-  if(aboveKama)return'ATTENZIONE';
-  return'WATCH';
+  if(sarBull && aoImproving) return 'LONG';
+  if(!sarBull) return 'USCITA';
+  return 'WATCH';
 }
 
 // ═══ STORIA SEGNALI — note dinamiche dai valori reali degli indicatori ═══
@@ -345,24 +334,18 @@ function buildSignalNote(tier, ctx){
   const erPct=er!=null?Math.round(er*100):null;
   switch(tier){
     case 'LONG':
-      return `Prezzo sopra entrambe le KAMA (confermato), SAR rialzista, baffetti=${baff!=null?baff:'?'}, ER=${erPct!=null?erPct+'%':'?'}`;
-    case 'EARLY':
-      return `Prezzo sopra KAMA veloce, non ancora confermato dalla KAMA lenta — baffetti=${baff!=null?baff:'?'}, ER=${erPct!=null?erPct+'%':'?'}`;
-    case 'ATTENZIONE':
-      return `Zona grigia: prezzo tra le due KAMA — trend non definito`;
+      return `SAR rialzista (flip o già in corso), condizione tra: AO in crescita, incrocio KAMA veloce, o incrocio RSI5/RSI14 al rialzo`;
     case 'USCITA':
-      return `Prezzo sceso sotto la KAMA lenta`;
-    case 'STOP':
-      return `Prezzo sotto la KAMA lenta con gap ampio (>2%) — stop operativo`;
+      return `SAR passato ribassista, oppure RSI5 ha incrociato al ribasso RSI14`;
     case 'WATCH':
-      return 'Nessuna condizione di ingresso attiva';
+      return 'Nessuna condizione di ingresso/uscita attiva';
     default:
       return '—';
   }
 }
 
-const BUY_TIERS=['LONG','EARLY'];
-const EXIT_TIERS=['USCITA','STOP'];
+const BUY_TIERS=['LONG'];
+const EXIT_TIERS=['USCITA'];
 
 function fmtDataIt(ts){
   const d=new Date(ts*1000);
@@ -616,10 +599,10 @@ function renderChartSVG(c,h,l,v,t,tf,pre,renko,renkoBrick,mlExit){
       polyline(kama.map((vv,i)=>vv!=null?[xPos(i),sy(vv)]:null).filter(Boolean),'#f0883e',2);
       sarArr.forEach((s,i)=>{if(s==null)return;el('circle',{cx:xPos(i).toFixed(1),cy:sy(s).toFixed(1),r:2.6,fill:sarBull[i]?'#6e40c9':'#f85149',stroke:'#fff','stroke-width':0.8});});
       let ps=null;
-      const segCol={LONG:'#1a7f37',EARLY:'#0969da',ATTENZIONE:'#f0883e',USCITA:'#9a6700',STOP:'#cf222e'};
+      const segCol={LONG:'#1a7f37',USCITA:'#cf222e'};
       segnalePerBar.forEach((s,i)=>{
-        if(!s||s===ps||!segCol[s]||s==='ATTENZIONE'||s==='WATCH')return;
-        const up=s==='LONG'||s==='EARLY';
+        if(!s||s===ps||!segCol[s]||s==='WATCH')return;
+        const up=s==='LONG';
         tri(xPos(i),sy(c[i])+(up?12:-12),5,up,segCol[s]);
         ps=s;
       });
@@ -751,7 +734,7 @@ function renderChartSVG(c,h,l,v,t,tf,pre,renko,renkoBrick,mlExit){
   if(legEl){
     const swf=(color,label)=>`<span style="display:inline-flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:${color};display:inline-block;border-radius:2px"></span>${label}</span>`;
     legEl.innerHTML=[swf('#1a7f37','HA Verde'),swf('#cf222e','HA Rosso'),swf('#f0883e','KAMA veloce'),swf('#58a6ff','MM20'),swf('#e3b341','MM50'),swf('#bc8cff','MM100'),
-      swf('#1a7f37','LONG'),swf('#0969da','EARLY'),swf('#9a6700','USCITA'),swf('#cf222e','STOP')].join('');
+      swf('#1a7f37','LONG'),swf('#cf222e','USCITA')].join('');
   }
 }
 
