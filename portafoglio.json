@@ -29,7 +29,7 @@
     },
     {
       "ticker": "3OIS",
-      "yahoo": "3OIS.MI",
+      "yahoo": "3SOI.DE",
       "nome": "WisdomTree WTI Crude Oil 3x Short",
       "carico": 1.89,
       "quantita": 100,
@@ -38,7 +38,7 @@
     },
     {
       "ticker": "3LM",
-      "yahoo": "3LM.MI",
+      "yahoo": "3LMS.MI",
       "nome": "",
       "carico": 10,
       "quantita": 100,
@@ -398,7 +398,7 @@
     },
     {
       "ticker": "LYXLVE",
-      "yahoo": "LYXLVE.DE",
+      "yahoo": "DJLEV.MI",
       "nome": "Amundi EURO STOXX 50 Daily (2X) Leveraged UCITS ETF",
       "carico": 77.1841,
       "quantita": 17,
@@ -407,7 +407,7 @@
     },
     {
       "ticker": "SDGPEX",
-      "yahoo": "SDGPEX.DE",
+      "yahoo": "ISPA.F",
       "nome": "iShares STOXX Gl.Select Dividend 100 UCITS ETF(DE)",
       "carico": 37.9597,
       "quantita": 31,
