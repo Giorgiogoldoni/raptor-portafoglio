@@ -57,7 +57,7 @@ def send_alert(subject, html):
 def build_alert_html(alerts, now):
     rows = ''
     for a in alerts:
-        zona_color = {'USCITA': '#c92a2a', 'STOP': '#862e2e'}.get(a['zona'], '#e67700')
+        zona_color = {'USCITA': '#c92a2a'}.get(a['zona'], '#e67700')
         pl_color   = '#c92a2a' if a['pl_pct'] < 0 else '#2f9e44'
         rows += f"""<tr style="background:#fff8f8;border-bottom:1px solid #f5e0e0">
           <td style="padding:8px 12px;font-weight:700;font-family:monospace">{a['ticker']}</td>
@@ -134,10 +134,8 @@ def main():
         pl_eur = (prezzo - carico) * pos.get('quantita', 0)
 
         motivi = []
-        if zona == 'STOP':
-            motivi.append('⛔ ZONA STOP — uscita immediata')
-        elif zona == 'USCITA':
-            motivi.append('🔴 ZONA USCITA — valutare uscita')
+        if zona == 'USCITA':
+            motivi.append('🔴 SEGNALE USCITA — SAR ribassista o incrocio RSI negativo')
         if pl_pct <= STOP_LOSS_PCT:
             motivi.append(f'📉 Stop loss -{abs(pl_pct):.1f}%')
 
@@ -185,10 +183,10 @@ def main():
     save_state(state)
 
     if to_send:
-        n_stop = sum(1 for a in to_send if 'STOP' in a['motivo'])
+        n_uscita = sum(1 for a in to_send if 'USCITA' in a['motivo'])
         subj   = f"⚠️ RAPTOR Alert — {len(to_send)} posizioni · {now.strftime('%d/%m %H:%M')}"
-        if n_stop:
-            subj = f"⛔ STOP! RAPTOR Alert — {n_stop} STOP · {now.strftime('%d/%m %H:%M')}"
+        if n_uscita:
+            subj = f"🔴 RAPTOR Alert — {n_uscita} USCITA · {now.strftime('%d/%m %H:%M')}"
         html = build_alert_html(to_send, now)
         send_alert(subj, html)
     elif alerts:
