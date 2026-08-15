@@ -62,6 +62,357 @@
       "quantita": 1000,
       "data_acquisto": "2026-07-15",
       "note": ""
+    },
+    {
+      "ticker": "EXUS",
+      "yahoo": "EXUS.MI",
+      "nome": "Xtrackers MSCI World ex USA UCITS ETF 1C",
+      "carico": 37.4375,
+      "quantita": 60,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "NCLR",
+      "yahoo": "NCLR.MI",
+      "nome": "WisdomTree Uranium and Nuclear Energy UCITS ETF Acc",
+      "carico": 56.1,
+      "quantita": 20,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "CSPXJ",
+      "yahoo": "CSPXJ.MI",
+      "nome": "iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc)",
+      "carico": 209.52,
+      "quantita": 10,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "SEMA",
+      "yahoo": "SEMA.MI",
+      "nome": "iShares MSCI EM UCITS ETF USD (Acc)",
+      "carico": 59.88,
+      "quantita": 20,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "XZEM",
+      "yahoo": "XZEM.MI",
+      "nome": "Xtrackers MSCI Emerging Markets ESG UCITS ETF 1 C",
+      "carico": 59.28,
+      "quantita": 20,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "WRNW",
+      "yahoo": "WRNW.MI",
+      "nome": "WisdomTree Renewable Energy UCITS ETF Acc",
+      "carico": 23.32,
+      "quantita": 50,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "DFND",
+      "yahoo": "DFND.MI",
+      "nome": "iShares Global Aerospace & Defence UCITS ETF USD (Acc)",
+      "carico": 8.451,
+      "quantita": 150,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "SAUDI",
+      "yahoo": "SAUDI.MI",
+      "nome": "Franklin FTSE Saudi Arabia UCITS ETF Acc",
+      "carico": 21.46,
+      "quantita": 50,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "FLXT",
+      "yahoo": "FLXT.MI",
+      "nome": "Franklin FTSE Taiwan UCITS ETF",
+      "carico": 66.17,
+      "quantita": 20,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "SEML",
+      "yahoo": "SEML.MI",
+      "nome": "iShares J.P. Morgan EM Local Govt Bond UCITS ETF USD (Dist)",
+      "carico": 40.92,
+      "quantita": 64,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "VUKE",
+      "yahoo": "VUKE.MI",
+      "nome": "Vanguard FTSE 100 UCITS ETF (GBP) Dis",
+      "carico": 52.86,
+      "quantita": 20,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "HSTE",
+      "yahoo": "HSTE.MI",
+      "nome": "HSBC Hang Seng Tech UCITS ETF",
+      "carico": 6.5302,
+      "quantita": 400,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "XWTS",
+      "yahoo": "XWTS.MI",
+      "nome": "Xtrackers MSCI World Communication Services UCITS ETF",
+      "carico": 28.495,
+      "quantita": 50,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "IWMO",
+      "yahoo": "IWMO.MI",
+      "nome": "iShares Edge MSCI World Momentum Factor UCITS ETF USD (Acc)",
+      "carico": 101.695,
+      "quantita": 20,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "IEMO",
+      "yahoo": "IEMO.MI",
+      "nome": "iShares Edge MSCI Europe Momentum Factor UCITS ETF EUR (Acc)",
+      "carico": 15.676,
+      "quantita": 70,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "MEUD",
+      "yahoo": "MEUD.MI",
+      "nome": "Amundi IS Core Stoxx Europe 600 UCITS ETF Acc",
+      "carico": 300.5,
+      "quantita": 5,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "INDO",
+      "yahoo": "INDO.MI",
+      "nome": "Amundi MSCI Indonesia UCITS ETF Acc",
+      "carico": 87.63,
+      "quantita": 40,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "XEON",
+      "yahoo": "XEON.MI",
+      "nome": "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C",
+      "carico": 148.1282,
+      "quantita": 101,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "XFVT",
+      "yahoo": "XFVT.MI",
+      "nome": "Xtrackers Vietnam Swap UCITS ETF 1C",
+      "carico": 37.215,
+      "quantita": 30,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "QDVA",
+      "yahoo": "QDVA.DE",
+      "nome": "iShares Edge MSCI USA Momentum Factor UCITS ETF USD (Acc)",
+      "carico": 19.276,
+      "quantita": 60,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "XESD",
+      "yahoo": "XESD.DE",
+      "nome": "Xtrackers Spain UCITS ETF 1D",
+      "carico": 45.44,
+      "quantita": 20,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "D5BI",
+      "yahoo": "D5BI.DE",
+      "nome": "Xtrackers MSCI Mexico UCITS ETF 1C",
+      "carico": 8.128,
+      "quantita": 120,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "ISPY",
+      "yahoo": "ISPY.MI",
+      "nome": "L&G Cyber Security UCITS ETF",
+      "carico": 34.7579,
+      "quantita": 24,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "JA64YQ",
+      "yahoo": "JA64YQ.MOT",
+      "nome": "BTP-1MZ72 2,15",
+      "carico": 61.86,
+      "quantita": 10000,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "INDI",
+      "yahoo": "INDI.MI",
+      "nome": "Amundi MSCI India Swap UCITS ETF EUR Acc",
+      "carico": 27.0817,
+      "quantita": 150,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "STHE",
+      "yahoo": "STHE.MI",
+      "nome": "PIMCO Advantage US Short-Term HY Corporate Bond UCITS ETF EUR Hdg Inc",
+      "carico": 74.5278,
+      "quantita": 250,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "AIAI",
+      "yahoo": "AIAI.MI",
+      "nome": "L&G Artificial Intelligence UCITS ETF",
+      "carico": 32.7827,
+      "quantita": 22,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "GLUG",
+      "yahoo": "GLUG.MI",
+      "nome": "L&G Clean Water UCITS ETF",
+      "carico": 18.3176,
+      "quantita": 66,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "LGGL",
+      "yahoo": "LGGL.MI",
+      "nome": "L&G Global Equity UCITS ETF $",
+      "carico": 21.957,
+      "quantita": 106,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "SP1E",
+      "yahoo": "SP1E.MI",
+      "nome": "L&G S&P 100 Equal Weight UCITS ETF",
+      "carico": 10.63,
+      "quantita": 9,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "XS7W",
+      "yahoo": "XS7W.MI",
+      "nome": "Xtrackers Portfolio Income UCITS ETF 1D",
+      "carico": 13.5286,
+      "quantita": 227,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "GERD",
+      "yahoo": "GERD.MI",
+      "nome": "L&G Gerd Kommer Multifactor Equity UCITS ETF Acc",
+      "carico": 14.2985,
+      "quantita": 70,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "LTAM",
+      "yahoo": "LTAM.MI",
+      "nome": "iShares MSCI EM Lat America UCITS ETF USD (Dist)",
+      "carico": 18.7787,
+      "quantita": 115,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "LABL",
+      "yahoo": "LABL.MI",
+      "nome": "L&G Global Brands UCITS ETF Acc",
+      "carico": 15.544,
+      "quantita": 42,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "BATT",
+      "yahoo": "BATT.MI",
+      "nome": "L&G Battery Value-Chain UCITS ETF",
+      "carico": 30.5186,
+      "quantita": 29,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "SUSW",
+      "yahoo": "SUSW.MI",
+      "nome": "iShares MSCI World SRI UCITS ETF EUR (Acc)",
+      "carico": 13.1978,
+      "quantita": 70,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "EUNY",
+      "yahoo": "EUNY.DE",
+      "nome": "iShares EM Dividend UCITS ETF USD (Dist)",
+      "carico": 16.5445,
+      "quantita": 58,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "LYXLVE",
+      "yahoo": "LYXLVE.DE",
+      "nome": "Amundi EURO STOXX 50 Daily (2X) Leveraged UCITS ETF",
+      "carico": 77.1841,
+      "quantita": 17,
+      "data_acquisto": "2026-08-14",
+      "note": ""
+    },
+    {
+      "ticker": "SDGPEX",
+      "yahoo": "SDGPEX.DE",
+      "nome": "iShares STOXX Gl.Select Dividend 100 UCITS ETF(DE)",
+      "carico": 37.9597,
+      "quantita": 31,
+      "data_acquisto": "2026-08-14",
+      "note": ""
     }
   ],
   "watchlist": [],
