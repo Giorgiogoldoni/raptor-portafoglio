@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-RAPTOR Portafoglio — Alert Stop
+RAPTOR Portafoglio — Alert Stop (autonomo)
 Gira ogni 30 minuti. Confronta posizioni in portafoglio.json
-con i dati live di raptor_leva.json. Invia email se:
+con i dati live PROPRI (raptor_portafoglio_live.json, generato da
+fetch_data.py) — non dipende più da raptor-leva. Invia email se:
 - Zona → USCITA o STOP
 - P&L < -10% (stop loss automatico)
 """
@@ -14,7 +15,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import urllib.request
 
-LEVA_URL = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-leva/main/raptor_leva.json'
+LEVA_URL = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-portafoglio/main/raptor_portafoglio_live.json'  # autonomo
 PF_URL   = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-portafoglio/main/portafoglio.json'
 STOP_LOSS_PCT = -10.0  # alert se P&L < -10%
 
@@ -95,7 +96,6 @@ def build_alert_html(alerts, now):
     </table>
     <p style="margin-top:16px;padding-top:12px;border-top:1px solid #e0ddd6;font-size:11px;color:#7a766e">
       📋 <a href="https://giorgiogoldoni.github.io/raptor-portafoglio/" style="color:#1a6fcf">Apri Portafoglio</a>
-      &nbsp;·&nbsp; ⚡ <a href="https://giorgiogoldoni.github.io/raptor-leva/RAPTOR_Leva.html" style="color:#1a6fcf">Apri RAPTOR Leva</a>
       &nbsp;·&nbsp; ⚠️ Solo uso educativo
     </p>
   </div>
@@ -121,7 +121,7 @@ def main():
         ticker = pos['ticker']
         live   = leva_map.get(ticker)
         if not live:
-            print(f"  {ticker}: non trovato in raptor_leva.json")
+            print(f"  {ticker}: non trovato in raptor_portafoglio_live.json (es. BTP, escluso dal sistema segnali)")
             continue
 
         carico = pos['carico']
