@@ -302,19 +302,22 @@ def process_ticker(info, regime_mult, regime_name):
         zona = zona_arr[-1]
         in_long = segnale_arr[-1] == 'LONG'
         score = calc_score(in_long, ao_arr[-1], vol_r_arr[-1], er_arr[-1], baff_arr[-1], regime_mult)
-        entry_date = '—'
+        entry_date, entry_date_iso = '—', None
         cur_s = segnale_arr[-1]
         if cur_s == 'USCITA':
             entry_date = datetime.datetime.fromtimestamp(ts[-1]).strftime('%d/%m %H:%M')  # uscita è un evento del giorno stesso
+            entry_date_iso = datetime.datetime.fromtimestamp(ts[-1]).isoformat()
         elif cur_s == 'LONG':
             for idx in range(len(segnale_arr)-1, max(0,len(segnale_arr)-252), -1):
                 if segnale_arr[idx] != 'LONG':
                     entry_date = datetime.datetime.fromtimestamp(ts[idx+1]).strftime('%d/%m %H:%M')
+                    entry_date_iso = datetime.datetime.fromtimestamp(ts[idx+1]).isoformat()
                     break
         else:  # WATCH: mostra la data dell'ultimo evento (entrata o uscita) per riferimento
             for idx in range(len(segnale_arr)-2, max(0,len(segnale_arr)-252), -1):
                 if segnale_arr[idx] in ('LONG','USCITA'):
                     entry_date = datetime.datetime.fromtimestamp(ts[idx]).strftime('%d/%m %H:%M')
+                    entry_date_iso = datetime.datetime.fromtimestamp(ts[idx]).isoformat()
                     break
 
         live = {
@@ -328,7 +331,7 @@ def process_ticker(info, regime_mult, regime_name):
             'volRatio': sf(vol_r_arr[-1]),
             'sar': sf(round(sar_arr[-1],4)) if sar_arr[-1] else None,
             'sarBull': sar_bull_arr[-1],
-            'entryDate': entry_date,
+            'entryDate': entry_date, 'entryDateISO': entry_date_iso,
             'perfOggi':  sf(round((lc/close[-2]-1)*100,2))  if len(close)>2  else 0,
             'perfSett':  sf(round((lc/close[-6]-1)*100,2))  if len(close)>6  else 0,
             'perfMese':  sf(round((lc/close[-21]-1)*100,2)) if len(close)>21 else 0,
