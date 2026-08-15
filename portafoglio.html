@@ -56,11 +56,9 @@ td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
 
 /* ZONA pills */
 .pill{display:inline-block;padding:2px 7px;border-radius:3px;font-size:9px;font-weight:700;font-family:var(--font-cond);letter-spacing:.5px}
-.pill-lc{background:#d3f9d8;color:var(--green)}
-.pill-le{background:#dbe4ff;color:var(--accent)}
-.pill-gr{background:#fff3bf;color:var(--orange)}
+.pill-long{background:#d3f9d8;color:var(--green)}
+.pill-watch{background:#f1f3f5;color:var(--text3)}
 .pill-ex{background:#ffe3e3;color:var(--red)}
-.pill-st{background:#ffe3e3;color:#862e2e;border:1px solid #fca5a5}
 
 /* ALERT badge */
 .alert-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700;font-family:var(--font-cond)}
@@ -117,11 +115,34 @@ td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
   <div class="kpi"><div class="kl">Alert attivi</div><div class="kv orange" id="kAlerts">—</div><div class="ks">uscita/stop</div></div>
 </div>
 
+<!-- OPERAZIONI IN CORSO — acquisti attivi (segnale LONG) con data di ingresso -->
+<div class="section" id="opInCorsoSection" style="display:none">
+  <div class="section-title">
+    🟢 Operazioni in Corso
+    <span style="font-size:10px;color:var(--text3);font-weight:400">posizioni con segnale LONG attivo, ordinate per data di ingresso</span>
+  </div>
+  <div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Nome</th>
+        <th>Data Ingresso</th>
+        <th>Giorni</th>
+        <th>Prezzo</th>
+        <th>P&L %</th>
+      </tr>
+    </thead>
+    <tbody id="opInCorsoBody"></tbody>
+  </table>
+  </div>
+</div>
+
 <!-- POSIZIONI ATTIVE -->
 <div class="section">
   <div class="section-title">
     📈 Posizioni Attive
-    <span style="font-size:10px;color:var(--text3);font-weight:400">dati da raptor-leva · aggiornamento ogni 30 min</span>
+    <span style="font-size:10px;color:var(--text3);font-weight:400">dati autonomi (fetch_data.py) · aggiornamento ogni 30 min</span>
   </div>
   <div class="tbl-wrap">
   <table>
@@ -252,21 +273,14 @@ function render() {
     const rsi   = live.rsi   || '—';
 
     const zonaPill = {
-      'LONG_CONF':  '<span class="pill pill-lc">LONG CONF</span>',
-      'LONG_EARLY': '<span class="pill pill-le">LONG EARLY</span>',
-      'GRIGIA':     '<span class="pill pill-gr">GRIGIA</span>',
-      'USCITA':     '<span class="pill pill-ex">⚠ USCITA</span>',
-      'STOP':       '<span class="pill pill-st">⛔ STOP</span>',
+      'LONG':   '<span class="pill pill-long">🟢 LONG</span>',
+      'USCITA': '<span class="pill pill-ex">🔴 USCITA</span>',
+      'WATCH':  '<span class="pill pill-watch">WATCH</span>',
     }[zona] || `<span class="pill">${zona}</span>`;
 
     let alertBadge = '<span class="alert-badge alert-ok">✅ OK</span>';
-    if(zona === 'GRIGIA') {
-      alertBadge = '<span class="alert-badge alert-warn">⚠ Attenzione</span>';
-    } else if(zona === 'USCITA') {
+    if(zona === 'USCITA') {
       alertBadge = '<span class="alert-badge alert-warn">🔴 Uscita</span>';
-      alerts++;
-    } else if(zona === 'STOP') {
-      alertBadge = '<span class="alert-badge alert-stop">⛔ STOP!</span>';
       alerts++;
     }
 
@@ -320,6 +334,39 @@ function render() {
   document.getElementById('kWorst').textContent  = worstTk ? (worstPct>=0?'+':'') + worstPct.toFixed(1) + '%' : '—';
   document.getElementById('kWorstName').textContent = worstTk;
   document.getElementById('kAlerts').textContent = alerts;
+
+  // ── Operazioni in corso: posizioni con segnale LONG attivo, ordinate per data ingresso (più recente prima) ──
+  const inCorso = posizioni
+    .map(p => ({ p, live: levaMap[p.ticker] || {} }))
+    .filter(({live}) => live.zona === 'LONG')
+    .sort((a,b) => new Date(b.live.entryDateISO||0) - new Date(a.live.entryDateISO||0));
+
+  const opSection = document.getElementById('opInCorsoSection');
+  if (inCorso.length) {
+    opSection.style.display = 'block';
+    document.getElementById('opInCorsoBody').innerHTML = inCorso.map(({p,live}) => {
+      const prezzo = live.prezzo || p.carico;
+      const plPct = (prezzo - p.carico) / p.carico * 100;
+      const plColor = plPct>=0 ? 'var(--green)' : 'var(--red)';
+      let giorni = '—';
+      if (live.entryDateISO) {
+        const d = Math.floor((Date.now() - new Date(live.entryDateISO)) / 86400000);
+        giorni = d + 'g';
+      }
+      const nome = p.nome || live.nome || '—';
+      return `<tr>
+        <td><span class="ticker-link mono" data-ticker="${p.ticker}" data-yahoo="${p.yahoo||p.ticker+'.MI'}" style="font-weight:700;color:var(--accent);cursor:pointer;text-decoration:underline dotted">${p.ticker}</span></td>
+        <td style="font-size:11px;color:var(--text2);max-width:220px;overflow:hidden;text-overflow:ellipsis" title="${nome}">${nome}</td>
+        <td class="mono" style="font-weight:700">${live.entryDate||'—'}</td>
+        <td class="mono right">${giorni}</td>
+        <td class="mono right" style="font-weight:700">${prezzo.toFixed(4)}</td>
+        <td class="mono right" style="color:${plColor};font-weight:700">${plPct>=0?'+':''}${plPct.toFixed(2)}%</td>
+      </tr>`;
+    }).join('');
+  } else {
+    opSection.style.display = 'none';
+  }
+
 
   // Storico
   if(storico.length) {
