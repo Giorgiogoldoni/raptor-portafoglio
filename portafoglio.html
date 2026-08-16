@@ -101,6 +101,7 @@ td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
   <button class="btn green" onclick="openModal()">+ Aggiungi</button>
   <button class="btn" onclick="exportExcel()">📥 Excel</button>
   <a class="btn" href="regole.pdf" target="_blank">📋 Regole</a>
+  <button class="btn green" onclick="openNuovePartenze()">🟢 Nuove Partenze</button>
   <a class="btn" href="https://giorgiogoldoni.github.io/raptor-leva/RAPTOR_Leva.html">⚡ Leva</a>
   <a class="btn" href="https://giorgiogoldoni.github.io/sniper/">🎯 Sniper</a>
 </div>
@@ -214,6 +215,27 @@ td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
     <div class="modal-btns">
       <button class="btn" onclick="document.getElementById('chiudiOverlay').classList.remove('open')">Annulla</button>
       <button class="btn red" onclick="confChiudi()">🔴 Chiudi</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NUOVE PARTENZE -->
+<div class="modal-overlay" id="npOverlay" onclick="if(event.target===this)document.getElementById('npOverlay').classList.remove('open')">
+  <div class="modal" style="max-width:640px">
+    <h3>🟢 Nuove Partenze</h3>
+    <div style="font-size:10px;color:var(--text3);margin-bottom:10px" id="npMeta">—</div>
+    <div class="tbl-wrap" style="max-height:420px;overflow-y:auto">
+      <table>
+        <thead>
+          <tr><th>Ticker</th><th>Nome</th><th>Classe</th><th>Score</th><th>SAR età</th><th>Prezzo</th></tr>
+        </thead>
+        <tbody id="npBody">
+          <tr><td colspan="6" style="text-align:center;padding:20px;color:var(--text3)">⏳ Caricamento...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-btns">
+      <button class="btn" onclick="document.getElementById('npOverlay').classList.remove('open')">Chiudi</button>
     </div>
   </div>
 </div>
@@ -400,6 +422,41 @@ function openModal() {
   document.getElementById('modalOverlay').classList.add('open');
   setTimeout(()=>document.getElementById('fTicker').focus(), 100);
 }
+const NP_URL = 'https://raw.githubusercontent.com/Giorgiogoldoni/raptor-portafoglio/main/nuove_partenze.json';
+
+function tvUrl(yahoo) {
+  const map = {'.MI':'MIL:', '.DE':'XETR:', '.PA':'EURONEXT:', '.L':'LSE:'};
+  for (const suf in map) if (yahoo.endsWith(suf)) return `https://www.tradingview.com/chart/?symbol=${map[suf]}${yahoo.split('.')[0]}`;
+  return `https://www.tradingview.com/chart/?symbol=MIL:${yahoo.split('.')[0]}`;
+}
+
+async function openNuovePartenze() {
+  document.getElementById('npOverlay').classList.add('open');
+  document.getElementById('npBody').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--text3)">⏳ Caricamento...</td></tr>';
+  try {
+    const res = await fetch(NP_URL + '?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const d = await res.json();
+    const genLocal = d.generated_at ? new Date(d.generated_at).toLocaleString('it-IT') : '—';
+    const genCore = d.core_generated_at ? new Date(d.core_generated_at).toLocaleString('it-IT') : '—';
+    document.getElementById('npMeta').textContent = `Scansione: ${genLocal} · dati core: ${genCore}`;
+    if (!d.items || !d.items.length) {
+      document.getElementById('npBody').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--text3)">Nessuna nuova partenza rilevata</td></tr>';
+      return;
+    }
+    document.getElementById('npBody').innerHTML = d.items.map(i => `<tr>
+      <td><a href="${tvUrl(i.ticker)}" target="_blank" class="mono" style="font-weight:700;color:var(--accent);text-decoration:underline dotted">${i.ticker}</a></td>
+      <td style="font-size:11px;color:var(--text2);max-width:200px;overflow:hidden;text-overflow:ellipsis" title="${i.nome||''}">${i.nome||'—'}</td>
+      <td style="font-size:10px;color:var(--text3)">${i.asset_class||'—'}</td>
+      <td class="mono right" style="font-weight:700">${i.score??'—'}</td>
+      <td class="mono right">${i.sar_age??'—'}g</td>
+      <td class="mono right">${i.prezzo??'—'}</td>
+    </tr>`).join('');
+  } catch (e) {
+    document.getElementById('npBody').innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--red)">❌ Errore: ${e.message}</td></tr>`;
+  }
+}
+
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
 }
