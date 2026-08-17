@@ -25,17 +25,32 @@ def fetch_scores():
         return json.loads(r.read().decode())
 
 
+RISERVA_LEVA = 3
+RISERVA_COMMODITY = 3
+
+
 def filtra_nuove_partenze(scores):
     items = scores.get('scores', [])
-    fresh = [
+    # Filtro allargato: ogni flip SAR fresco rialzista (≤2gg), niente più vincolo signal=='BUY'
+    # (cattura anche i "minimi"/rimbalzi, dove il trend non ha ancora un punteggio pieno confermato)
+    candidati = [
         i for i in items
-        if i.get('signal') == 'BUY'
+        if i.get('sar_is_up')
         and i.get('sar_age') is not None and i.get('sar_age') <= SAR_AGE_MAX
         and i.get('asset_class') in ASSET_CLASSI
-        and i.get('sar_is_up')
     ]
-    fresh.sort(key=lambda x: -(x.get('score_operativo') or 0))
-    return fresh[:MAX_RESULTS]
+    candidati.sort(key=lambda x: -(x.get('score_operativo') or 0))
+
+    leva = [c for c in candidati if c.get('asset_class') == 'leva_short'][:RISERVA_LEVA]
+    commodity = [c for c in candidati if c.get('asset_class') == 'commodity'][:RISERVA_COMMODITY]
+    riservati = {c['ticker_yf'] for c in leva + commodity}
+
+    resto_slot = MAX_RESULTS - len(leva) - len(commodity)
+    resto = [c for c in candidati if c['ticker_yf'] not in riservati][:resto_slot]
+
+    top = leva + commodity + resto
+    top.sort(key=lambda x: -(x.get('score_operativo') or 0))
+    return top
 
 
 def build_email_html(items, generated_at):
@@ -49,10 +64,13 @@ def build_email_html(items, generated_at):
                 tv_pref = pref
                 break
         tv_url = f"https://www.tradingview.com/chart/?symbol={tv_pref}{tv_sym}"
+        segnale = i.get('signal', '—')
+        seg_color = '#1a7f37' if segnale == 'BUY' else ('#888' if 'NO TRADE' in segnale else '#e67700')
         rows += f"""<tr>
           <td style="padding:6px 10px;font-family:monospace;font-weight:700">{yahoo}</td>
-          <td style="padding:6px 10px;font-size:12px;color:#444">{i.get('name','')[:45]}</td>
+          <td style="padding:6px 10px;font-size:12px;color:#444">{i.get('name','')[:40]}</td>
           <td style="padding:6px 10px;font-size:11px;color:#888">{i.get('asset_class','')}</td>
+          <td style="padding:6px 10px;font-size:10px;color:{seg_color};font-weight:700">{segnale}</td>
           <td style="padding:6px 10px;text-align:right;font-weight:700">{i.get('score_operativo')}</td>
           <td style="padding:6px 10px;text-align:center">{i.get('sar_age')}g</td>
           <td style="padding:6px 10px;text-align:right;font-family:monospace">{i.get('close','—')}</td>
@@ -60,7 +78,7 @@ def build_email_html(items, generated_at):
         </tr>"""
 
     return f"""<html><body style="font-family:Arial,sans-serif;background:#f6f8fa;padding:20px">
-    <div style="max-width:760px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e1e4e8">
+    <div style="max-width:820px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e1e4e8">
       <div style="background:#1a1816;color:#fff;padding:16px 20px">
         <h2 style="margin:0;font-size:18px">🟢 Nuove Partenze — {len(items)} strumenti</h2>
         <div style="font-size:11px;opacity:.7">Dati core aggiornati: {generated_at}</div>
@@ -68,14 +86,18 @@ def build_email_html(items, generated_at):
       <table style="width:100%;border-collapse:collapse">
         <thead><tr style="background:#f6f8fa;font-size:11px;color:#666;text-align:left">
           <th style="padding:6px 10px">Ticker</th><th style="padding:6px 10px">Nome</th>
-          <th style="padding:6px 10px">Classe</th><th style="padding:6px 10px;text-align:right">Score</th>
+          <th style="padding:6px 10px">Classe</th><th style="padding:6px 10px">Segnale</th>
+          <th style="padding:6px 10px;text-align:right">Score</th>
           <th style="padding:6px 10px">SAR età</th><th style="padding:6px 10px;text-align:right">Prezzo</th>
           <th style="padding:6px 10px">Grafico</th>
         </tr></thead>
         <tbody>{rows}</tbody>
       </table>
       <div style="padding:12px 20px;font-size:10px;color:#999">
-        Filtro: segnale BUY, SAR passato rialzista da ≤{SAR_AGE_MAX} giorni, classe equity/commodity/leva.
+        Filtro: SAR passato rialzista da ≤{SAR_AGE_MAX} giorni (qualunque punteggio — cattura anche i minimi/rimbalzi
+        non ancora confermati da un rating pieno), classe equity/commodity/leva. Riservati {RISERVA_LEVA} slot a
+        leva e {RISERVA_COMMODITY} a commodity quando disponibili, il resto per punteggio più alto.
+        Include anche strumenti già in portafoglio se hanno un segnale fresco.
         Fonte dati: <a href="https://giorgiogoldoni.github.io/core/">core</a> (non è un consiglio di investimento).
       </div>
     </div>
@@ -168,6 +190,7 @@ def main():
             'ticker': i['ticker_yf'], 'nome': i.get('name', ''),
             'asset_class': i.get('asset_class'), 'score': i.get('score_operativo'),
             'sar_age': i.get('sar_age'), 'prezzo': i.get('close'),
+            'signal': i.get('signal'),
         } for i in top],
     }
     with open('nuove_partenze.json', 'w', encoding='utf-8') as f:
