@@ -54,5 +54,13 @@
   "BATT": {
     "zona": "USCITA",
     "last_sent": "2026-08-18T07:40:21.837011"
+  },
+  "XZEM": {
+    "zona": "USCITA",
+    "last_sent": "2026-08-18T08:40:03.174632"
+  },
+  "XFVT": {
+    "zona": "WATCH",
+    "last_sent": "2026-08-18T08:40:03.174632"
   }
 }
