@@ -70,5 +70,9 @@
   "QDVA": {
     "zona": "USCITA",
     "last_sent": "2026-08-18T13:44:02.887285"
+  },
+  "IWMO": {
+    "zona": "USCITA",
+    "last_sent": "2026-08-18T14:36:14.398997"
   }
 }
