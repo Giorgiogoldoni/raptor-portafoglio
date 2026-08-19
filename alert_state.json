@@ -1,78 +1,42 @@
 {
   "3OIS": {
     "zona": "WATCH",
-    "last_sent": "2026-08-18T12:51:23.608955"
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "NCLR": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T12:51:23.608955"
+    "zona": "WATCH",
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "LCOP": {
     "zona": "WATCH",
-    "last_sent": "2026-08-18T12:51:23.608955"
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "3WHL": {
     "zona": "LONG",
-    "last_sent": "2026-08-18T12:51:23.608955"
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "HSTE": {
     "zona": "WATCH",
-    "last_sent": "2026-08-18T12:51:23.608955"
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "INDO": {
     "zona": "WATCH",
-    "last_sent": "2026-08-18T12:51:23.608955"
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "WRNW": {
     "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "DFND": {
     "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
-  },
-  "FLXT": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "ISPY": {
     "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
-  },
-  "SP1E": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
+    "last_sent": "2026-08-19T06:48:41.795538"
   },
   "XS7W": {
     "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
-  },
-  "GERD": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
-  },
-  "BATT": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
-  },
-  "XZEM": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T15:34:11.162451"
-  },
-  "XFVT": {
-    "zona": "WATCH",
-    "last_sent": "2026-08-18T15:34:11.162451"
-  },
-  "SEMA": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
-  },
-  "QDVA": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T13:44:02.887285"
-  },
-  "IWMO": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-18T14:36:14.398997"
+    "last_sent": "2026-08-19T06:48:41.795538"
   }
 }
