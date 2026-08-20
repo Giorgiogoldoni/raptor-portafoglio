@@ -23,44 +23,12 @@
     "zona": "WATCH",
     "last_sent": "2026-08-20T06:50:10.100710"
   },
-  "SEMA": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-20T06:50:10.100710"
-  },
   "FLXT": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-20T06:50:10.100710"
-  },
-  "IWMO": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-20T06:50:10.100710"
+    "zona": "WATCH",
+    "last_sent": "2026-08-20T07:42:46.158750"
   },
   "XFVT": {
     "zona": "WATCH",
-    "last_sent": "2026-08-20T06:50:10.100710"
-  },
-  "QDVA": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-20T06:50:10.100710"
-  },
-  "GERD": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-20T06:50:10.100710"
-  },
-  "BATT": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-20T06:50:10.100710"
-  },
-  "SUSW": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-20T06:50:10.100710"
-  },
-  "STHE": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-20T06:50:10.100710"
-  },
-  "XZEM": {
-    "zona": "USCITA",
     "last_sent": "2026-08-20T06:50:10.100710"
   },
   "SAUDI": {
