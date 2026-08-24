@@ -12,8 +12,8 @@
     "last_sent": "2026-08-24T07:02:42.246829"
   },
   "3WHL": {
-    "zona": "USCITA",
-    "last_sent": "2026-08-24T07:02:42.246829"
+    "zona": "WATCH",
+    "last_sent": "2026-08-24T08:12:17.365330"
   },
   "HSTE": {
     "zona": "WATCH",
@@ -26,5 +26,9 @@
   "FLXT": {
     "zona": "WATCH",
     "last_sent": "2026-08-24T07:02:42.246829"
+  },
+  "XEON": {
+    "zona": "USCITA",
+    "last_sent": "2026-08-24T08:12:17.365330"
   }
 }
