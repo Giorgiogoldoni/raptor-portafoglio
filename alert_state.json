@@ -1,54 +1,66 @@
 {
   "3OIS": {
-    "zona": "LONG",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "zona": "USCITA",
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
   "NCLR": {
-    "zona": "LONG",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "zona": "USCITA",
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
   "LCOP": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "zona": "WATCH",
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
   "HSTE": {
     "zona": "WATCH",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
   "INDO": {
     "zona": "WATCH",
-    "last_sent": "2026-09-01T19:16:25.114460"
-  },
-  "SEML": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
   "BATT": {
     "zona": "WATCH",
-    "last_sent": "2026-09-01T19:16:25.114460"
-  },
-  "2PAL": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-01T19:16:25.114460"
-  },
-  "VUKE": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
   "MEUD": {
     "zona": "USCITA",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
-  "XESD": {
+  "EXUS": {
     "zona": "USCITA",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
-  "SAUDI": {
+  "CSPXJ": {
     "zona": "USCITA",
-    "last_sent": "2026-09-01T15:31:35.687264"
+    "last_sent": "2026-09-02T10:52:43.869193"
   },
-  "D5BI": {
+  "SEMA": {
     "zona": "USCITA",
-    "last_sent": "2026-09-01T19:16:25.114460"
+    "last_sent": "2026-09-02T10:52:43.869193"
+  },
+  "XZEM": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-02T10:52:43.869193"
+  },
+  "INDI": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-02T10:52:43.869193"
+  },
+  "AIAI": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-02T10:52:43.869193"
+  },
+  "GERD": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-02T10:52:43.869193"
+  },
+  "SUSW": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-02T10:52:43.869193"
+  },
+  "SDGPEX": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-02T10:52:43.869193"
   }
 }
