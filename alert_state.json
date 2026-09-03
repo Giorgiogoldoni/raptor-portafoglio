@@ -1,58 +1,54 @@
 {
   "3OIS": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "zona": "WATCH",
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
   "NCLR": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "zona": "WATCH",
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
   "LCOP": {
     "zona": "WATCH",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
   "HSTE": {
     "zona": "WATCH",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
   "INDO": {
-    "zona": "WATCH",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "zona": "LONG",
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
   "BATT": {
     "zona": "WATCH",
-    "last_sent": "2026-09-02T18:52:18.801567"
-  },
-  "MEUD": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
-  },
-  "EXUS": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
-  },
-  "CSPXJ": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
   "AIAI": {
     "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
-  "GERD": {
+  "3WHL": {
     "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
-  "SUSW": {
+  "SEMA": {
     "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
-  "SDGPEX": {
+  "XZEM": {
     "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "last_sent": "2026-09-03T10:52:37.155027"
   },
-  "INDI": {
+  "ISPY": {
     "zona": "USCITA",
-    "last_sent": "2026-09-02T18:52:18.801567"
+    "last_sent": "2026-09-03T10:52:37.155027"
+  },
+  "XS7W": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-03T10:52:37.155027"
+  },
+  "LTAM": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-03T10:52:37.155027"
   }
 }
