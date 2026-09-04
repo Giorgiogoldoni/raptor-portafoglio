@@ -27,10 +27,6 @@
     "zona": "USCITA",
     "last_sent": "2026-09-04T10:51:31.639224"
   },
-  "XZEM": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-04T10:51:31.639224"
-  },
   "LCOC": {
     "zona": "USCITA",
     "last_sent": "2026-09-04T10:51:31.639224"
@@ -38,5 +34,9 @@
   "XS7W": {
     "zona": "USCITA",
     "last_sent": "2026-09-04T10:51:31.639224"
+  },
+  "BAYN": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-04T14:52:01.394979"
   }
 }
