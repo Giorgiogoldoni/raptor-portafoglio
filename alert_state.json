@@ -1,30 +1,42 @@
 {
   "3OIS": {
     "zona": "WATCH",
-    "last_sent": "2026-09-08T18:31:29.372175"
+    "last_sent": "2026-09-09T10:56:48.926460"
   },
   "NCLR": {
     "zona": "WATCH",
-    "last_sent": "2026-09-08T18:31:29.372175"
+    "last_sent": "2026-09-09T10:56:48.926460"
   },
   "LCOP": {
     "zona": "LONG",
-    "last_sent": "2026-09-08T18:31:29.372175"
+    "last_sent": "2026-09-09T10:56:48.926460"
   },
   "HSTE": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-08T18:31:29.372175"
+    "zona": "WATCH",
+    "last_sent": "2026-09-09T10:56:48.926460"
   },
   "INDO": {
-    "zona": "LONG",
-    "last_sent": "2026-09-08T18:31:29.372175"
-  },
-  "CSPXJ": {
     "zona": "USCITA",
-    "last_sent": "2026-09-08T18:31:29.372175"
+    "last_sent": "2026-09-09T10:56:48.926460"
   },
-  "INDI": {
+  "EXUS": {
     "zona": "USCITA",
-    "last_sent": "2026-09-08T18:31:29.372175"
+    "last_sent": "2026-09-09T10:56:48.926460"
+  },
+  "FLXT": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-09T10:56:48.926460"
+  },
+  "XESD": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-09T10:56:48.926460"
+  },
+  "LABL": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-09T10:56:48.926460"
+  },
+  "BATT": {
+    "zona": "WATCH",
+    "last_sent": "2026-09-09T10:56:48.926460"
   }
 }
