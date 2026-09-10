@@ -16,8 +16,8 @@
     "last_sent": "2026-09-10T10:53:05.998035"
   },
   "INDO": {
-    "zona": "LONG",
-    "last_sent": "2026-09-10T10:53:05.998035"
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T14:55:20.674584"
   },
   "EXUS": {
     "zona": "USCITA",
@@ -66,5 +66,17 @@
   "LYXLVE": {
     "zona": "USCITA",
     "last_sent": "2026-09-10T10:53:05.998035"
+  },
+  "SEMA": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T14:55:20.674584"
+  },
+  "XZEM": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T14:55:20.674584"
+  },
+  "IEMO": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T14:55:20.674584"
   }
 }
