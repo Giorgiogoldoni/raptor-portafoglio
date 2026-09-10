@@ -1,50 +1,70 @@
 {
   "3OIS": {
     "zona": "WATCH",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "NCLR": {
     "zona": "WATCH",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "LCOP": {
-    "zona": "LONG",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "HSTE": {
     "zona": "WATCH",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "INDO": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "zona": "LONG",
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "EXUS": {
     "zona": "USCITA",
-    "last_sent": "2026-09-09T18:48:21.189645"
-  },
-  "FLXT": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "XESD": {
     "zona": "USCITA",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "LABL": {
     "zona": "USCITA",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "BATT": {
     "zona": "WATCH",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "LGGL": {
     "zona": "USCITA",
-    "last_sent": "2026-09-09T15:03:56.815583"
+    "last_sent": "2026-09-10T10:53:05.998035"
   },
   "XS7W": {
     "zona": "USCITA",
-    "last_sent": "2026-09-09T18:48:21.189645"
+    "last_sent": "2026-09-10T10:53:05.998035"
+  },
+  "BAYN": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T10:53:05.998035"
+  },
+  "CSPXJ": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T10:53:05.998035"
+  },
+  "SEML": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T10:53:05.998035"
+  },
+  "XWTS": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T10:53:05.998035"
+  },
+  "LTAM": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T10:53:05.998035"
+  },
+  "LYXLVE": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-10T10:53:05.998035"
   }
 }
