@@ -1,82 +1,42 @@
 {
   "3OIS": {
     "zona": "WATCH",
-    "last_sent": "2026-09-10T18:12:33.785718"
+    "last_sent": "2026-09-11T10:50:07.045155"
   },
   "NCLR": {
     "zona": "WATCH",
-    "last_sent": "2026-09-10T18:12:33.785718"
+    "last_sent": "2026-09-11T10:50:07.045155"
   },
   "LCOP": {
     "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
+    "last_sent": "2026-09-11T10:50:07.045155"
   },
   "HSTE": {
     "zona": "WATCH",
-    "last_sent": "2026-09-10T18:12:33.785718"
+    "last_sent": "2026-09-11T10:50:07.045155"
   },
   "INDO": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T21:05:58.244303"
-  },
-  "EXUS": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "XESD": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "LABL": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
+    "zona": "WATCH",
+    "last_sent": "2026-09-11T10:50:07.045155"
   },
   "BATT": {
-    "zona": "WATCH",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "LGGL": {
     "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "XS7W": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "BAYN": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "CSPXJ": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "SEML": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "XWTS": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "LTAM": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
+    "last_sent": "2026-09-11T10:50:07.045155"
   },
   "LYXLVE": {
     "zona": "USCITA",
-    "last_sent": "2026-09-10T18:12:33.785718"
-  },
-  "SEMA": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T21:05:58.244303"
-  },
-  "XZEM": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-10T21:05:58.244303"
+    "last_sent": "2026-09-11T10:50:07.045155"
   },
   "IEMO": {
     "zona": "USCITA",
-    "last_sent": "2026-09-10T21:05:58.244303"
+    "last_sent": "2026-09-11T10:50:07.045155"
+  },
+  "FLXT": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-11T10:50:07.045155"
+  },
+  "SDGPEX": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-11T10:50:07.045155"
   }
 }
