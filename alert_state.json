@@ -1,30 +1,34 @@
 {
   "3OIS": {
-    "zona": "WATCH",
-    "last_sent": "2026-09-18T18:08:20.613789"
+    "zona": "LONG",
+    "last_sent": "2026-09-21T12:18:24.851453"
   },
   "NCLR": {
     "zona": "WATCH",
-    "last_sent": "2026-09-18T18:08:20.613789"
+    "last_sent": "2026-09-21T12:18:24.851453"
   },
   "LCOP": {
-    "zona": "WATCH",
-    "last_sent": "2026-09-18T18:08:20.613789"
+    "zona": "LONG",
+    "last_sent": "2026-09-21T12:18:24.851453"
   },
   "HSTE": {
     "zona": "LONG",
-    "last_sent": "2026-09-18T18:08:20.613789"
+    "last_sent": "2026-09-21T12:18:24.851453"
   },
   "INDO": {
     "zona": "WATCH",
-    "last_sent": "2026-09-18T18:08:20.613789"
+    "last_sent": "2026-09-21T12:18:24.851453"
   },
   "BATT": {
     "zona": "WATCH",
-    "last_sent": "2026-09-18T18:08:20.613789"
+    "last_sent": "2026-09-21T12:18:24.851453"
   },
-  "3WHL": {
-    "zona": "WATCH",
-    "last_sent": "2026-09-18T21:08:42.157704"
+  "ISPY": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-21T12:18:24.851453"
+  },
+  "SDGPEX": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-21T12:18:24.851453"
   }
 }
