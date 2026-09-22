@@ -1,54 +1,30 @@
 {
   "3OIS": {
     "zona": "LONG",
-    "last_sent": "2026-09-21T22:08:08.878777"
+    "last_sent": "2026-09-22T11:10:49.703164"
   },
   "NCLR": {
     "zona": "WATCH",
-    "last_sent": "2026-09-21T22:08:08.878777"
+    "last_sent": "2026-09-22T11:10:49.703164"
   },
   "LCOP": {
-    "zona": "WATCH",
-    "last_sent": "2026-09-21T22:08:08.878777"
+    "zona": "LONG",
+    "last_sent": "2026-09-22T11:10:49.703164"
   },
   "HSTE": {
     "zona": "LONG",
-    "last_sent": "2026-09-21T22:08:08.878777"
+    "last_sent": "2026-09-22T11:10:49.703164"
   },
   "INDO": {
     "zona": "WATCH",
-    "last_sent": "2026-09-21T22:08:08.878777"
+    "last_sent": "2026-09-22T11:10:49.703164"
   },
   "BATT": {
     "zona": "WATCH",
-    "last_sent": "2026-09-21T22:08:08.878777"
+    "last_sent": "2026-09-22T11:10:49.703164"
   },
   "SDGPEX": {
     "zona": "USCITA",
-    "last_sent": "2026-09-21T22:08:08.878777"
-  },
-  "BAYN": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-21T22:08:08.878777"
-  },
-  "3WHL": {
-    "zona": "WATCH",
-    "last_sent": "2026-09-21T22:08:08.878777"
-  },
-  "XWTS": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-21T22:08:08.878777"
-  },
-  "IWMO": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-21T22:08:08.878777"
-  },
-  "XESD": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-21T22:08:08.878777"
-  },
-  "LABL": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-21T22:08:08.878777"
+    "last_sent": "2026-09-22T11:10:49.703164"
   }
 }
