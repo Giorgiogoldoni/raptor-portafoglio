@@ -46,5 +46,17 @@
   "SDGPEX": {
     "zona": "USCITA",
     "last_sent": "2026-09-25T11:25:09.449118"
+  },
+  "EXUS": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-25T15:54:00.181594"
+  },
+  "SEML": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-25T15:54:00.181594"
+  },
+  "MEUD": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-25T15:54:00.181594"
   }
 }
