@@ -1,62 +1,58 @@
 {
   "3OIS": {
-    "zona": "LONG",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "zona": "WATCH",
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
   "NCLR": {
-    "zona": "LONG",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "zona": "WATCH",
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
   "LCOP": {
-    "zona": "LONG",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "zona": "USCITA",
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
   "HSTE": {
-    "zona": "LONG",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "zona": "WATCH",
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
   "INDO": {
     "zona": "WATCH",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
   "BATT": {
     "zona": "WATCH",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
   "3WHL": {
     "zona": "WATCH",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
-  "CSPXJ": {
+  "SEMA": {
     "zona": "USCITA",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
-  "VUKE": {
+  "XZEM": {
     "zona": "USCITA",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
-  "XESD": {
+  "FLXT": {
     "zona": "USCITA",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
-  "LTAM": {
+  "INDI": {
     "zona": "USCITA",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
-  "SDGPEX": {
+  "AIAI": {
     "zona": "USCITA",
-    "last_sent": "2026-09-25T19:54:26.546592"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
-  "EXUS": {
+  "LABL": {
     "zona": "USCITA",
-    "last_sent": "2026-09-25T15:54:00.181594"
+    "last_sent": "2026-09-28T13:14:42.823540"
   },
-  "SEML": {
+  "LYXLVE": {
     "zona": "USCITA",
-    "last_sent": "2026-09-25T15:54:00.181594"
-  },
-  "MEUD": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-25T15:54:00.181594"
+    "last_sent": "2026-09-28T13:14:42.823540"
   }
 }
