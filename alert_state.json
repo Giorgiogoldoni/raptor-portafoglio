@@ -1,98 +1,66 @@
 {
   "3OIS": {
     "zona": "WATCH",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "NCLR": {
     "zona": "WATCH",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "LCOP": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "HSTE": {
     "zona": "WATCH",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "INDO": {
     "zona": "WATCH",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "BATT": {
     "zona": "WATCH",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "3WHL": {
     "zona": "WATCH",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "SEMA": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "XZEM": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "FLXT": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "INDI": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "AIAI": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "LABL": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "2PAL": {
-    "zona": "WATCH",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "EXUS": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "CSPXJ": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "VUKE": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "IWMO": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "IEMO": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "MEUD": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "QDVA": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "XESD": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
-  },
-  "LGGL": {
-    "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
   },
   "GERD": {
     "zona": "USCITA",
-    "last_sent": "2026-09-28T20:12:07.129222"
+    "last_sent": "2026-09-29T12:22:32.232490"
+  },
+  "BAYN": {
+    "zona": "USCITA",
+    "last_sent": "2026-09-29T12:22:32.232490"
   }
 }
