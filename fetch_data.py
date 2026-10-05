@@ -2,16 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 RAPTOR Portafoglio — Fetch autonomo (motore adattato da raptor-leva)
-Scarica storico 2 anni per i 45 ETF/ETP tracciati (il BTP JA64YQ è
-escluso: nessun dato affidabile via yfinance per obbligazioni MOT).
-Calcola doppia KAMA (veloce=entrata, lenta=uscita), SAR, AO veloce,
-RSI/RSI5, baffetti, zona operativa e segnale — stesso motore di
-raptor-leva. Genera:
+Scarica storico 2 anni per i simboli Yahoo elencati in portafoglio.json
+(campo "yahoo" di ogni posizione). Calcola doppia KAMA, SAR, AO veloce,
+RSI/RSI5, baffetti, zona operativa e segnale — stesso motore di raptor-leva.
+Genera:
   - raptor_portafoglio_live.json  (stato live per portafoglio.html / alert_check.py)
-  - data/charts/TICKER.json       (storico 2y + indicatori giornalieri
-                                    precalcolati, formato scannerv3 per
-                                    chart_widget.js)
-  - data/charts/index.json        (indice ticker -> file, per il widget)
+  - data/charts/SIMBOLO.json      (storico 2y + indicatori, formato scannerv3)
+  - data/charts/index.json        (indice simbolo -> file, per il widget)
 Gira ogni 30 min, 6-18 UTC, lun-ven (vedi .github/workflows/fetch.yml).
 """
 
@@ -29,55 +26,25 @@ def sf(x):
     return None if (math.isnan(xf) or math.isinf(xf)) else xf
 
 # ═══════════════════════════════════════════════════════
-# UNIVERSO — 45 ETF/ETP del portafoglio reale (BTP escluso)
+# UNIVERSO — dinamico, letto da portafoglio.json
 # ═══════════════════════════════════════════════════════
-TICKERS = [
-  {"t":"LCOP","y":"LCOP.MI","n":"WisdomTree Copper 2x Daily Leveraged"},
-  {"t":"LCOC","y":"LCOC.MI","n":"WisdomTree Cocoa 2x Daily Leveraged"},
-  {"t":"BAYN","y":"BAYN.DE","n":"Bayer AG"},
-  {"t":"3OIS","y":"3SOI.DE","n":"WisdomTree WTI Crude Oil 3x Short"},
-  {"t":"3LM","y":"3LMS.MI","n":"WisdomTree Microsoft 3x Daily Leveraged"},
-  {"t":"3WHL","y":"3WHL.MI","n":"WisdomTree Wheat 3x Daily Leveraged"},
-  {"t":"2PAL","y":"2PAL.MI","n":"WisdomTree Palladium 2x Daily Leveraged"},
-  {"t":"EXUS","y":"EXUS.MI","n":"Xtrackers MSCI World ex USA UCITS ETF 1C"},
-  {"t":"NCLR","y":"NCLR.MI","n":"WisdomTree Uranium and Nuclear Energy UCITS ETF Acc"},
-  {"t":"CSPXJ","y":"CSPXJ.MI","n":"iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc)"},
-  {"t":"SEMA","y":"SEMA.MI","n":"iShares MSCI EM UCITS ETF USD (Acc)"},
-  {"t":"XZEM","y":"XZEM.MI","n":"Xtrackers MSCI Emerging Markets ESG UCITS ETF 1 C"},
-  {"t":"WRNW","y":"WRNW.MI","n":"WisdomTree Renewable Energy UCITS ETF Acc"},
-  {"t":"DFND","y":"DFND.MI","n":"iShares Global Aerospace & Defence UCITS ETF USD (Acc)"},
-  {"t":"SAUDI","y":"SAUDI.MI","n":"Franklin FTSE Saudi Arabia UCITS ETF Acc"},
-  {"t":"FLXT","y":"FLXT.MI","n":"Franklin FTSE Taiwan UCITS ETF"},
-  {"t":"SEML","y":"SEML.MI","n":"iShares J.P. Morgan EM Local Govt Bond UCITS ETF USD (Dist)"},
-  {"t":"VUKE","y":"VUKE.MI","n":"Vanguard FTSE 100 UCITS ETF (GBP) Dis"},
-  {"t":"HSTE","y":"HSTE.MI","n":"HSBC Hang Seng Tech UCITS ETF"},
-  {"t":"XWTS","y":"XWTS.MI","n":"Xtrackers MSCI World Communication Services UCITS ETF"},
-  {"t":"IWMO","y":"IWMO.MI","n":"iShares Edge MSCI World Momentum Factor UCITS ETF USD (Acc)"},
-  {"t":"IEMO","y":"IEMO.MI","n":"iShares Edge MSCI Europe Momentum Factor UCITS ETF EUR (Acc)"},
-  {"t":"MEUD","y":"MEUD.MI","n":"Amundi IS Core Stoxx Europe 600 UCITS ETF Acc"},
-  {"t":"INDO","y":"INDO.MI","n":"Amundi MSCI Indonesia UCITS ETF Acc"},
-  {"t":"XEON","y":"XEON.MI","n":"Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C"},
-  {"t":"XFVT","y":"XFVT.MI","n":"Xtrackers Vietnam Swap UCITS ETF 1C"},
-  {"t":"QDVA","y":"QDVA.DE","n":"iShares Edge MSCI USA Momentum Factor UCITS ETF USD (Acc)"},
-  {"t":"XESD","y":"XESD.DE","n":"Xtrackers Spain UCITS ETF 1D"},
-  {"t":"D5BI","y":"D5BI.DE","n":"Xtrackers MSCI Mexico UCITS ETF 1C"},
-  {"t":"ISPY","y":"ISPY.MI","n":"L&G Cyber Security UCITS ETF"},
-  {"t":"INDI","y":"INDI.MI","n":"Amundi MSCI India Swap UCITS ETF EUR Acc"},
-  {"t":"STHE","y":"STHE.MI","n":"PIMCO Advantage US Short-Term HY Corporate Bond UCITS ETF EUR Hdg Inc"},
-  {"t":"AIAI","y":"AIAI.MI","n":"L&G Artificial Intelligence UCITS ETF"},
-  {"t":"GLUG","y":"GLUG.MI","n":"L&G Clean Water UCITS ETF"},
-  {"t":"LGGL","y":"LGGL.MI","n":"L&G Global Equity UCITS ETF $"},
-  {"t":"SP1E","y":"SP1E.MI","n":"L&G S&P 100 Equal Weight UCITS ETF"},
-  {"t":"XS7W","y":"XS7W.MI","n":"Xtrackers Portfolio Income UCITS ETF 1D"},
-  {"t":"GERD","y":"GERD.MI","n":"L&G Gerd Kommer Multifactor Equity UCITS ETF Acc"},
-  {"t":"LTAM","y":"LTAM.MI","n":"iShares MSCI EM Lat America UCITS ETF USD (Dist)"},
-  {"t":"LABL","y":"LABL.MI","n":"L&G Global Brands UCITS ETF Acc"},
-  {"t":"BATT","y":"BATT.MI","n":"L&G Battery Value-Chain UCITS ETF"},
-  {"t":"SUSW","y":"SUSW.MI","n":"iShares MSCI World SRI UCITS ETF EUR (Acc)"},
-  {"t":"EUNY","y":"EUNY.DE","n":"iShares EM Dividend UCITS ETF USD (Dist)"},
-  {"t":"LYXLVE","y":"DJLEV.MI","n":"Amundi EURO STOXX 50 Daily (2X) Leveraged UCITS ETF"},
-  {"t":"SDGPEX","y":"ISPA.F","n":"iShares STOXX Gl.Select Dividend 100 UCITS ETF(DE)"},
-]
+def load_tickers(path='portafoglio.json'):
+    try:
+        with open(path, encoding='utf-8') as f:
+            pf = json.load(f)
+    except Exception as e:
+        print(f"portafoglio.json non leggibile ({e}) — nessun ticker da scaricare")
+        return []
+    out, seen = [], set()
+    for p in pf.get('posizioni', []):
+        y = (p.get('yahoo') or '').strip().upper()
+        if not y or y in seen:
+            continue
+        seen.add(y)
+        out.append({"t": y.split('.')[0], "y": y, "n": p.get('nome', '')})
+    return out
+
+TICKERS = load_tickers()
 
 VIX_TICKERS = [
     {"t": "VIX_USA", "y": "^VIX"},
@@ -283,6 +250,11 @@ def process_ticker(info, regime_mult, regime_name):
         volume = [float(x) for x in hist['Volume'].values]
         ts     = [int(t.timestamp()) for t in hist.index]
 
+        def dstr(idx):
+            """Data locale della barra (fuso di borsa dell'indice Yahoo): (gg/mm/aaaa, aaaa-mm-gg)."""
+            d = hist.index[idx]
+            return d.strftime('%d/%m/%Y'), d.strftime('%Y-%m-%d')
+
         kama_fast = calc_kama(close, n=5,  fast=3, slow=20)
         kama_slow = calc_kama(close, n=20, fast=2, slow=40)
         ao_arr    = calc_ao_fast_arr(high, low)
@@ -305,20 +277,22 @@ def process_ticker(info, regime_mult, regime_name):
         entry_date, entry_date_iso = '—', None
         cur_s = segnale_arr[-1]
         if cur_s == 'USCITA':
-            entry_date = datetime.datetime.fromtimestamp(ts[-1]).strftime('%d/%m %H:%M')  # uscita è un evento del giorno stesso
-            entry_date_iso = datetime.datetime.fromtimestamp(ts[-1]).isoformat()
+            entry_date, entry_date_iso = dstr(-1)  # uscita è un evento dell'ultima barra
         elif cur_s == 'LONG':
             for idx in range(len(segnale_arr)-1, max(0,len(segnale_arr)-252), -1):
                 if segnale_arr[idx] != 'LONG':
-                    entry_date = datetime.datetime.fromtimestamp(ts[idx+1]).strftime('%d/%m %H:%M')
-                    entry_date_iso = datetime.datetime.fromtimestamp(ts[idx+1]).isoformat()
+                    entry_date, entry_date_iso = dstr(idx+1)
                     break
         else:  # WATCH: mostra la data dell'ultimo evento (entrata o uscita) per riferimento
             for idx in range(len(segnale_arr)-2, max(0,len(segnale_arr)-252), -1):
                 if segnale_arr[idx] in ('LONG','USCITA'):
-                    entry_date = datetime.datetime.fromtimestamp(ts[idx]).strftime('%d/%m %H:%M')
-                    entry_date_iso = datetime.datetime.fromtimestamp(ts[idx]).isoformat()
+                    entry_date, entry_date_iso = dstr(idx)
                     break
+
+        # prima barra della serie SAR corrente e numero di pallini consecutivi
+        _n = len(sar_bull_arr); _i = _n - 1
+        while _i >= 0 and sar_bull_arr[_i] == sar_bull_arr[-1]:
+            _i -= 1
 
         live = {
             'ticker': info['t'], 'yahoo': symbol, 'nome': info.get('n',''),
@@ -331,6 +305,8 @@ def process_ticker(info, regime_mult, regime_name):
             'volRatio': sf(vol_r_arr[-1]),
             'sar': sf(round(sar_arr[-1],4)) if sar_arr[-1] else None,
             'sarBull': sar_bull_arr[-1],
+            'sarCount': _n - 1 - _i,
+            'sarDate': dstr(_i + 1)[0],
             'entryDate': entry_date, 'entryDateISO': entry_date_iso,
             'perfOggi':  sf(round((lc/close[-2]-1)*100,2))  if len(close)>2  else 0,
             'perfSett':  sf(round((lc/close[-6]-1)*100,2))  if len(close)>6  else 0,
@@ -361,7 +337,7 @@ def process_ticker(info, regime_mult, regime_name):
 def main():
     import os
     now = datetime.datetime.now()
-    print(f"RAPTOR Portafoglio Fetch — {now.strftime('%Y-%m-%d %H:%M')}")
+    print(f"RAPTOR Portafoglio Fetch — {now.strftime('%Y-%m-%d %H:%M')} — {len(TICKERS)} simboli")
     os.makedirs(CHARTS_DIR, exist_ok=True)
 
     vix, vstoxx = fetch_vix()
@@ -370,6 +346,7 @@ def main():
 
     live_results = []
     chart_index = []
+    falliti = []
     errors = 0
     for i, info in enumerate(TICKERS):
         live, chart = process_ticker(info, regime['mult'], regime['regime'])
@@ -383,8 +360,10 @@ def main():
             except ValueError as e:
                 print(f"  {info['t']}: NaN/Infinity residuo nel chart JSON, scarto ({e})")
                 live_results.pop()  # niente prezzo live senza grafico coerente
+                falliti.append(info['y'])
                 errors += 1
         else:
+            falliti.append(info['y'])
             errors += 1
         if (i+1) % 10 == 0:
             print(f"  {i+1}/{len(TICKERS)} — ok:{len(live_results)} err:{errors}")
@@ -397,6 +376,7 @@ def main():
         'timestamp': now.isoformat(),
         'timestamp_it': now.strftime('%d/%m/%Y %H:%M'),
         'total': len(TICKERS), 'ok': len(live_results), 'errors': errors,
+        'falliti': falliti,
         'vix': sf(vix), 'vstoxx': sf(vstoxx),
         'regime': regime['regime'], 'regime_mult': regime['mult'],
         'data': live_results,
@@ -405,6 +385,8 @@ def main():
         json.dump(output, f, ensure_ascii=False, separators=(',',':'), allow_nan=False)
 
     print(f"\nSalvato raptor_portafoglio_live.json — {len(live_results)} OK, {errors} errori")
+    if falliti:
+        print("Simboli senza dati: " + ", ".join(falliti))
 
 if __name__ == '__main__':
     main()
