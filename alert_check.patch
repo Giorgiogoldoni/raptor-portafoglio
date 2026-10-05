@@ -1,0 +1,15 @@
+--- a/alert_check.py
++++ b/alert_check.py
+@@ -122,3 +122,3 @@
+-    leva_map = {d['ticker']: d for d in leva.get('data', [])}
++    leva_map = {d['yahoo']: d for d in leva.get('data', [])}
+     posizioni = pf.get('posizioni', [])
+     print(f"Posizioni in portafoglio: {len(posizioni)}")
+@@ -127,5 +127,5 @@
+     alerts = []
+     for pos in posizioni:
+-        ticker = pos['ticker']
+-        live   = leva_map.get(ticker)
++        ticker = pos['yahoo'].split('.')[0]
++        live   = leva_map.get(pos['yahoo'])
+         if not live:
