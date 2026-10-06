@@ -31,9 +31,11 @@ input.c{width:90px;border:1px solid var(--b);border-radius:3px;padding:3px 5px;t
 <button class="btn" onclick="load()">Aggiorna</button><button class="btn g" onclick="openAdd()">+ Aggiungi</button>
 <button class="btn" onclick="xl()">Excel</button><button class="btn" onclick="expJ()">Esporta JSON</button>
 <button class="btn" onclick="document.getElementById('imp').click()">Importa JSON</button><input id="imp" type="file" accept=".json" hidden onchange="impJ(this)">
+<button class="btn g" id="syn" onclick="sync()" style="display:none">Sincronizza</button>
 <a class="btn" href="regole.pdf" target="_blank">Regole</a></div>
 <div class="kpi"><div><small>Posizioni</small><b id="kN">—</b></div><div><small>P&amp;L % medio (semplice, senza pesi)</small><b id="kP">—</b></div>
 <div><small>Alert attivi (uscita o P&amp;L ≤ -10%)</small><b id="kA">—</b></div><div><small>Migliore</small><b id="kB">—</b></div><div><small>Peggiore</small><b id="kW">—</b></div></div>
+<div id="warn" style="display:none;margin:8px 16px;padding:8px 12px;background:#fff3bf;border:1px solid #e67700;border-radius:4px"></div>
 <div class="sec"><div class="flt" id="flt"></div><div class="w"><table><thead><tr><th>Ticker</th><th>Nome</th><th>Carico</th><th>Prezzo</th><th>P&amp;L %</th><th>Zona</th><th>Score</th><th>RSI14</th><th>Trade aperto dal</th><th>1° pallino</th><th>N. pallini</th><th></th></tr></thead><tbody id="tb"></tbody></table></div></div>
 <div class="sec"><details><summary style="cursor:pointer;font-weight:700">Storico posizioni chiuse (<span id="sN">0</span>)</summary><div class="w"><table><thead><tr><th>Ticker</th><th>Nome</th><th>Carico</th><th>Vendita</th><th>P&amp;L %</th><th>Aperta</th><th>Chiusa</th></tr></thead><tbody id="sb"></tbody></table></div></details></div>
 <div class="ov" id="ovA" onclick="if(event.target===this)this.classList.remove('open')"><div class="md"><h3>Aggiungi titolo</h3>
@@ -42,11 +44,12 @@ input.c{width:90px;border:1px solid var(--b);border-radius:3px;padding:3px 5px;t
 <label>Prezzo di carico (vuoto = prezzo attuale)</label><input id="fc" type="number" step="0.0001"><label>Data acquisto</label><input id="fd" type="date">
 <div class="mb"><button class="btn" onclick="document.getElementById('ovA').classList.remove('open')">Annulla</button><button class="btn g" onclick="add()">Salva</button></div></div></div>
 <script>
-const CHART_BASE='data/charts/',K='rptf_v1';let L=[],S=[],V={},U=null,F='TUTTI';
+const CHART_BASE='data/charts/',K='rptf_v1';let L=[],S=[],V={},U=null,F='TUTTI',R=null;
 const $=i=>document.getElementById(i),sv=()=>{try{localStorage.setItem(K,JSON.stringify({L,S}))}catch(e){}};
 const ZO={USCITA:0,LONG:1,WATCH:2},f=(x,d=2)=>x==null||isNaN(x)?'—':(+x).toFixed(d);
 function tv(y){const m={MI:'MIL:',DE:'XETR:',PA:'EURONEXT:',L:'LSE:'},p=y.split('.');return 'https://www.tradingview.com/chart/?symbol='+(m[p[1]]||'MIL:')+p[0]}
-async function load(){try{const r=await fetch('raptor_portafoglio_live.json?t='+Date.now());const d=await r.json();V={};(d.data||[]).forEach(x=>V[x.yahoo]=x);$('ts').textContent=d.timestamp_it||''}catch(e){$('ts').textContent='dati live non disponibili'}render()}
+async function load(){try{const r=await fetch('raptor_portafoglio_live.json?t='+Date.now());const d=await r.json();V={};(d.data||[]).forEach(x=>V[x.yahoo]=x);$('ts').textContent=d.timestamp_it||''}catch(e){$('ts').textContent='dati live non disponibili'}
+try{const r=await fetch('portafoglio.json?t='+Date.now());R=new Map(((await r.json()).posizioni||[]).map(p=>[p.yahoo,p.carico]))}catch(e){R=null}render()}
 async function init(){let s=null;try{s=JSON.parse(localStorage.getItem(K))}catch(e){}
 if(s&&s.L){L=s.L;S=s.S||[]}else{try{const d=await (await fetch('portafoglio.json')).json();L=d.posizioni||[];S=d.storico||[];sv()}catch(e){}}
 $('flt').innerHTML=['TUTTI','LONG','WATCH','USCITA'].map(z=>`<button class="btn" data-z="${z}" onclick="F='${z}';render()">${z}</button>`).join('');load()}
@@ -64,6 +67,10 @@ return `<tr><td><span class="tk" onclick="sch(${i})">${p.yahoo.split('.')[0]}</s
 <td>${z?`<span class="z ${z}">${z}</span>`:'—'}</td><td class="n">${v?f(v.score,1):'—'}</td><td class="n">${v?f(v.rsi,1):'—'}</td><td>${g}</td>
 <td style="color:${sc}">${v&&v.sarDate?v.sarDate:'—'}</td><td class="n" style="color:${sc}">${v&&v.sarCount!=null?v.sarCount:'—'}</td>
 <td><button class="btn" onclick="sch(${i})">Scheda</button> <a class="btn" href="${tv(p.yahoo)}" target="_blank">TV</a> <button class="btn" onclick="chiudi(${i})">Chiudi</button> <button class="btn r" onclick="rim(${i})">✕</button></td></tr>`}).join('')||'<tr><td colspan="12" class="nd" style="padding:24px;text-align:center">Nessun titolo — usa "+ Aggiungi"</td></tr>';
+const d=diff(),nd=L.filter(p=>!V[p.yahoo]&&!(d&&d.ad.includes(p))),wb=$('warn'),sh=a=>a.map(p=>p.yahoo||p).join(', ');
+$('syn').style.display=d&&d.n?'':'none';if(d&&d.n)$('syn').textContent='Sincronizza ('+d.n+')';
+wb.style.display=(d&&d.n)||nd.length?'block':'none';
+wb.innerHTML=(d&&d.n?`<b>${d.n} modifiche non ancora nel repo</b> — aggiunti: ${d.ad.length?sh(d.ad):'—'}; tolti: ${d.rm.length?sh(d.rm):'—'}; carico cambiato: ${d.ch.length?sh(d.ch):'—'}. Premi <b>Sincronizza</b> e conferma la issue su GitHub: i dati arrivano in 3-5 minuti.`:'')+(nd.length?`<div>${nd.length} titoli senza dati dal fetch (${sh(nd)}): se sono appena stati sincronizzati attendi il prossimo aggiornamento, altrimenti controlla il simbolo o il log di Actions.</div>`:'');
 document.querySelectorAll('#flt .btn').forEach(x=>x.classList.toggle('on',x.dataset.z===F));
 $('kN').textContent=L.length;$('kP').textContent=n?(tot/n>=0?'+':'')+f(tot/n)+'%':'—';$('kA').textContent=al;
 $('kB').textContent=b?b.y.split('.')[0]+' '+f(b.pl,1)+'%':'—';$('kW').textContent=w?w.y.split('.')[0]+' '+f(w.pl,1)+'%':'—';
@@ -85,6 +92,10 @@ function add(){const y=$('fy').value.trim().toUpperCase();if(!y.includes('.')){a
 if(L.some(p=>p.yahoo===y)){alert(y+' è già in lista');return}
 const v=V[y],c=parseFloat($('fc').value)||(v&&v.prezzo);if(!(c>0)){alert('Nessun prezzo attuale disponibile: inserisci il prezzo di carico');return}
 const u=U&&U.find(x=>x[0]===y);L.push({yahoo:y,nome:sel?sel[1]:(u?u[1]:''),carico:c,data_acquisto:$('fd').value});sv();$('ovA').classList.remove('open');render()}
+function diff(){if(!R)return null;const ad=L.filter(p=>!R.has(p.yahoo)),rm=[...R.keys()].filter(y=>!L.some(p=>p.yahoo===y)),ch=L.filter(p=>R.has(p.yahoo)&&Math.abs(R.get(p.yahoo)-p.carico)>1e-9);return{ad,rm,ch,n:ad.length+rm.length+ch.length}}
+function sync(){const d=diff();if(!d||!d.n)return;const b='Sincronizzazione dal portafoglio.html: premi "Submit new issue".\n\n'+(L.length?L.map(p=>p.yahoo+';'+(+p.carico).toFixed(6)+';'+(p.data_acquisto||'')).join('\n'):'LISTA VUOTA')+'\n';
+const t='https://github.com/Giorgiogoldoni/raptor-portafoglio/issues/new?title='+encodeURIComponent('[SYNC] '+new Date().toISOString().slice(0,16).replace('T',' '));const u=t+'&body='+encodeURIComponent(b);
+if(u.length>7500){if(navigator.clipboard)navigator.clipboard.writeText(b);alert('La lista è lunga: ho copiato il testo negli appunti. Nella pagina GitHub che si apre incollalo nel corpo della issue e premi "Submit new issue".');window.open(t,'_blank')}else window.open(u,'_blank')}
 function dl(n,b,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([b],{type:t}));a.download=n;a.click()}
 function expJ(){dl('portafoglio.json',JSON.stringify({posizioni:L,storico:S},null,1),'application/json')}
 function impJ(el){const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.posizioni))throw 0;if(!confirm('Sostituire la lista attuale con '+d.posizioni.length+' titoli?'))return;L=d.posizioni;S=d.storico||[];sv();load()}catch(e){alert('File non valido')}};if(el.files[0])r.readAsText(el.files[0]);el.value=''}
