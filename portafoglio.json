@@ -245,6 +245,54 @@
    "nome": "iShares STOXX Gl.Select Dividend 100 UCITS ETF(DE)",
    "carico": 37.9597,
    "data_acquisto": "2026-08-14"
+  },
+  {
+   "yahoo": "STHY.MI",
+   "nome": "PIMCO Advantage US Short-Term High Yield Corporate Bond UCITS ETF USD Inc",
+   "carico": 69.32,
+   "data_acquisto": "2026-10-05"
+  },
+  {
+   "yahoo": "3LPP.MI",
+   "nome": "GRANITESHARES 3X LONG PAYPAL DAILY ETP",
+   "carico": 0.78,
+   "data_acquisto": "2026-10-05"
+  },
+  {
+   "yahoo": "HIM3.MI",
+   "nome": "Leverage Shares 3x Long Hims & Hers Health (HIMS) ETP Securities",
+   "carico": 31.5,
+   "data_acquisto": "2026-10-05"
+  },
+  {
+   "yahoo": "MLAY.MI",
+   "nome": "",
+   "carico": 7.45,
+   "data_acquisto": "2026-10-05"
+  },
+  {
+   "yahoo": "IEMB.MI",
+   "nome": "ISHARES J.P. MORGAN $ EM UCITS ETF DIST",
+   "carico": 78.0,
+   "data_acquisto": "2026-10-05"
+  },
+  {
+   "yahoo": "EMLI.MI",
+   "nome": "PIMCO Advantage Emerging Markets Local Bond UCITS ETF",
+   "carico": 59.0,
+   "data_acquisto": "2026-10-05"
+  },
+  {
+   "yahoo": "INRG.MI",
+   "nome": "iShares Global Clean Energy Transition UCITS ETF",
+   "carico": 9.0,
+   "data_acquisto": "2026-10-05"
+  },
+  {
+   "yahoo": "XNAS.MI",
+   "nome": "XTRACKERS NASDAQ 100 UCITS ETF",
+   "carico": 63.5,
+   "data_acquisto": "2026-10-06"
   }
  ],
  "storico": []
