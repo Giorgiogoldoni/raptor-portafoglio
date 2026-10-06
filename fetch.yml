@@ -1,0 +1,51 @@
+name: RAPTOR Portafoglio Fetch + Alert
+
+on:
+  schedule:
+    # Ogni 30 minuti dalle 6:00 alle 18:30 UTC (8:00-20:30 ora italiana estate), lun-ven
+    - cron: '0,30 6-18 * * 1-5'
+  workflow_dispatch:
+
+concurrency:
+  group: raptor-portafoglio-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch-and-alert:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installa dipendenze
+        run: pip install yfinance
+
+      - name: Esegui fetch dati + segnali (autonomo)
+        run: python fetch_data.py
+
+      # Gli alert non devono mai bloccare la pubblicazione dei dati
+      - name: Esegui controllo alert
+        continue-on-error: true
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        run: python alert_check.py
+
+      - name: Commit e push dati aggiornati
+        if: always()
+        run: |
+          git config user.name  "RAPTOR Bot"
+          git config user.email "raptor-bot@noreply.github.com"
+          git add raptor_portafoglio_live.json data/charts/
+          if [ -f alert_state.json ]; then git add alert_state.json; fi
+          git diff --staged --quiet || git commit -m "📊 RAPTOR Portafoglio fetch $(date +'%d/%m/%Y %H:%M')"
+          git pull --rebase origin main
+          git push
