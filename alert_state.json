@@ -1,46 +1,38 @@
 {
-  "3OIS": {
-    "zona": "LONG",
-    "last_sent": "2026-10-05T06:58:39.887116"
-  },
-  "NCLR": {
+  "LCOP.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-05T06:58:39.887116"
+    "last_sent": "2026-10-06T07:46:49.899511"
   },
-  "LCOP": {
+  "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-05T06:58:39.887116"
+    "last_sent": "2026-10-06T07:46:49.899511"
   },
-  "HSTE": {
+  "NCLR.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-05T06:58:39.887116"
+    "last_sent": "2026-10-06T07:46:49.899511"
   },
-  "INDO": {
+  "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-05T06:58:39.887116"
+    "last_sent": "2026-10-06T07:46:49.899511"
   },
-  "BATT": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-05T06:58:39.887116"
-  },
-  "3WHL": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-05T06:58:39.887116"
-  },
-  "INDI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-05T06:58:39.887116"
-  },
-  "2PAL": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-05T06:58:39.887116"
-  },
-  "IWMO": {
+  "IWMO.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-05T06:58:39.887116"
+    "last_sent": "2026-10-06T07:46:49.899511"
   },
-  "QDVA": {
+  "INDO.MI": {
+    "zona": "WATCH",
+    "last_sent": "2026-10-06T07:46:49.899511"
+  },
+  "QDVA.DE": {
     "zona": "USCITA",
-    "last_sent": "2026-10-05T06:58:39.887116"
+    "last_sent": "2026-10-06T07:46:49.899511"
+  },
+  "INDI.MI": {
+    "zona": "WATCH",
+    "last_sent": "2026-10-06T07:46:49.899511"
+  },
+  "BATT.MI": {
+    "zona": "WATCH",
+    "last_sent": "2026-10-06T07:46:49.899511"
   }
 }
