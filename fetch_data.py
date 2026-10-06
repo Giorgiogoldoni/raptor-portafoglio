@@ -13,6 +13,7 @@ Gira ogni 30 min, 6-18 UTC, lun-ven (vedi .github/workflows/fetch.yml).
 """
 
 import json, time, datetime, math
+from zoneinfo import ZoneInfo
 import yfinance as yf
 
 def sf(x):
@@ -336,7 +337,7 @@ def process_ticker(info, regime_mult, regime_name):
 
 def main():
     import os
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(ZoneInfo('Europe/Rome'))
     print(f"RAPTOR Portafoglio Fetch — {now.strftime('%Y-%m-%d %H:%M')} — {len(TICKERS)} simboli")
     os.makedirs(CHARTS_DIR, exist_ok=True)
 
