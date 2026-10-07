@@ -30,5 +30,17 @@
   "INDI.MI": {
     "zona": "WATCH",
     "last_sent": "2026-10-07T11:46:37.337903"
+  },
+  "SEMA.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-07T14:53:01.923197"
+  },
+  "XZEM.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-07T14:53:01.923197"
+  },
+  "IWMO.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-07T14:53:01.923197"
   }
 }
