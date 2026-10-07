@@ -172,6 +172,7 @@ def cross_down(a_prev, b_prev, a_now, b_now):
 def build_segnale_arr(close, kama_fast, sar_bull_arr, ao_arr, rsi_arr, rsi5_arr):
     n = len(close)
     segnale = ['WATCH'] * n
+    motivo = [None] * n   # solo informativo: quale condizione ha fatto scattare entrata/uscita
     in_position = False
     for i in range(2, n):
         sar_flip_up   = sar_bull_arr[i] and not sar_bull_arr[i-1]
@@ -190,14 +191,21 @@ def build_segnale_arr(close, kama_fast, sar_bull_arr, ao_arr, rsi_arr, rsi5_arr)
         if not in_position and buy:
             in_position = True
             segnale[i] = 'LONG'
+            motivo[i] = ' · '.join(txt for cond, txt in (
+                (sar_flip_up and ao_growing_2, 'SAR in flip rialzista + AO in crescita da 2 barre'),
+                (sar_flip_up and kama_cross_up, 'SAR in flip rialzista + prezzo sopra la KAMA veloce'),
+                (rsi_cross_up and sar_bull_arr[i], 'RSI(5) incrocia al rialzo RSI(14) con SAR rialzista')) if cond)
         elif in_position and exit_:
             in_position = False
             segnale[i] = 'USCITA'
+            motivo[i] = ' · '.join(txt for cond, txt in (
+                (sar_flip_down, 'SAR passato ribassista'),
+                (rsi_cross_down, 'RSI(5) incrocia al ribasso RSI(14)')) if cond)
         elif in_position:
             segnale[i] = 'LONG'
         else:
             segnale[i] = 'WATCH'
-    return segnale
+    return segnale, motivo
 
 def calc_score(in_long, ao, vol_ratio, er, baf, regime_mult):
     """Punteggio informativo (non blocca il segnale): premia AO positivo, volume sopra media,
@@ -266,7 +274,7 @@ def process_ticker(info, regime_mult, regime_name):
         sar_arr, sar_bull_arr = calc_sar_arr(high, low)
         vol_r_arr = calc_vol_ratio_arr(volume)
 
-        segnale_arr = build_segnale_arr(close, kama_fast, sar_bull_arr, ao_arr, rsi_arr, rsi5_arr)
+        segnale_arr, motivo_arr = build_segnale_arr(close, kama_fast, sar_bull_arr, ao_arr, rsi_arr, rsi5_arr)
         # zona = specchio semplificato del segnale, per compatibilità con campi esistenti del widget
         zona_arr = ['LONG' if s == 'LONG' else ('USCITA' if s == 'USCITA' else 'WATCH') for s in segnale_arr]
 
@@ -295,6 +303,15 @@ def process_ticker(info, regime_mult, regime_name):
         while _i >= 0 and sar_bull_arr[_i] == sar_bull_arr[-1]:
             _i -= 1
 
+        # ultima uscita del motore (data, risultato del trade, motivo): memoria dell'ultimo segnale per i WATCH
+        ult = None
+        ex = max((k for k, s in enumerate(segnale_arr) if s == 'USCITA'), default=None)
+        if ex is not None:
+            en = ex
+            while en > 0 and segnale_arr[en-1] == 'LONG':
+                en -= 1
+            ult = {'data': dstr(ex)[1], 'ret': sf(round((close[ex]/close[en]-1)*100, 2)), 'motivo': motivo_arr[ex]}
+
         live = {
             'ticker': info['t'], 'yahoo': symbol, 'nome': info.get('n',''),
             'segnale': segnale_arr[-1], 'zona': zona, 'score': sf(score),
@@ -308,6 +325,7 @@ def process_ticker(info, regime_mult, regime_name):
             'sarBull': sar_bull_arr[-1],
             'sarCount': _n - 1 - _i,
             'sarDate': dstr(_i + 1)[0],
+            'ultimoUscita': ult,
             'entryDate': entry_date, 'entryDateISO': entry_date_iso,
             'perfOggi':  sf(round((lc/close[-2]-1)*100,2))  if len(close)>2  else 0,
             'perfSett':  sf(round((lc/close[-6]-1)*100,2))  if len(close)>6  else 0,
@@ -329,6 +347,7 @@ def process_ticker(info, regime_mult, regime_name):
             'rsi_d': [sf(v) for v in rsi_arr], 'rsi5_d': [sf(v) for v in rsi5_arr],
             'baff_d': baff_arr, 'er_d': [sf(v) for v in er_arr],
             'segnale_d': segnale_arr, 'zona_d': zona_arr,
+            'motivo_d': motivo_arr,
         }
         return live, chart
     except Exception as e:
