@@ -1,0 +1,24 @@
+{
+  "sar_eta_max": 2,
+  "richiedi_ao": true,
+  "ao_barre": 2,
+  "richiedi_er": true,
+  "er_finestra": 10,
+  "er_min": 0.3,
+  "max_risultati": 15,
+  "slot_leva": 3,
+  "slot_commodity": 3,
+  "classi": [
+    "equity",
+    "commodity",
+    "leva_short"
+  ],
+  "punteggio_min": 0,
+  "segnali_ammessi": [],
+  "escludi_nome": [
+    "liquidity",
+    "overnight",
+    "money market"
+  ],
+  "segna_portafoglio": true
+}
