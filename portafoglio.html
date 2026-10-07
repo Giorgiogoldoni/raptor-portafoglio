@@ -36,7 +36,7 @@ input.c{width:90px;border:1px solid var(--b);border-radius:3px;padding:3px 5px;t
 <div class="kpi"><div><small>Posizioni</small><b id="kN">—</b></div><div><small>P&amp;L % medio (semplice, senza pesi)</small><b id="kP">—</b></div>
 <div><small>Alert attivi (uscita o P&amp;L ≤ -10%)</small><b id="kA">—</b></div><div><small>Migliore</small><b id="kB">—</b></div><div><small>Peggiore</small><b id="kW">—</b></div></div>
 <div id="warn" style="display:none;margin:8px 16px;padding:8px 12px;background:#fff3bf;border:1px solid #e67700;border-radius:4px"></div>
-<div class="sec"><div class="flt" id="flt"></div><div class="w"><table><thead><tr><th>Ticker</th><th>Nome</th><th>Carico</th><th>Prezzo</th><th>P&amp;L %</th><th>Zona</th><th>Score</th><th>RSI14</th><th>Trade aperto dal</th><th>1° pallino</th><th>N. pallini</th><th></th></tr></thead><tbody id="tb"></tbody></table></div></div>
+<div class="sec"><div class="flt" id="flt"></div><div class="w"><table><thead><tr><th>Ticker</th><th>Nome</th><th>Carico</th><th>Prezzo</th><th>P&amp;L %</th><th>Zona</th><th>Score</th><th>RSI14</th><th>Trade aperto / ultima uscita</th><th>1° pallino</th><th>N. pallini</th><th></th></tr></thead><tbody id="tb"></tbody></table></div></div>
 <div class="sec"><details><summary style="cursor:pointer;font-weight:700">Storico posizioni chiuse (<span id="sN">0</span>)</summary><div class="w"><table><thead><tr><th>Ticker</th><th>Nome</th><th>Carico</th><th>Vendita</th><th>P&amp;L %</th><th>Aperta</th><th>Chiusa</th></tr></thead><tbody id="sb"></tbody></table></div></details></div>
 <div class="ov" id="ovA" onclick="if(event.target===this)this.classList.remove('open')"><div class="md"><h3>Aggiungi titolo</h3>
 <label>Cerca nell'elenco (ticker o nome) oppure scrivi il simbolo Yahoo, es. ABCD.MI</label><input id="q" oninput="sug()" autocomplete="off"><div id="sug"></div>
@@ -58,7 +58,7 @@ const rows=L.map((p,i)=>{const v=V[p.yahoo],px=v&&v.prezzo!=null?v.prezzo:null,p
 if(pl!=null){tot+=pl;n++;if(!b||pl>b.pl)b={y:p.yahoo,pl};if(!w||pl<w.pl)w={y:p.yahoo,pl}}
 if(z==='USCITA'||(pl!=null&&pl<=-10))al++;return{p,i,v,px,pl,z}})
 .filter(r=>F==='TUTTI'||r.z===F).sort((a,b)=>(ZO[a.z]??3)-(ZO[b.z]??3));
-$('tb').innerHTML=rows.map(({p,i,v,px,pl,z})=>{const col=pl>=0?'var(--g)':'var(--r)',g=z==='LONG'&&v.entryDateISO?`<span class="z LONG">APERTO</span> ${new Date(v.entryDateISO).toLocaleDateString('it-IT')} · ${Math.floor((Date.now()-new Date(v.entryDateISO))/864e5)}g`:'—',
+$('tb').innerHTML=rows.map(({p,i,v,px,pl,z})=>{const col=pl>=0?'var(--g)':'var(--r)',g=z==='LONG'&&v.entryDateISO?`<span class="z LONG">APERTO</span> ${new Date(v.entryDateISO).toLocaleDateString('it-IT')} · ${Math.floor((Date.now()-new Date(v.entryDateISO))/864e5)}g`:(v&&v.ultimoUscita?`<span class="nd">ult. uscita</span> ${new Date(v.ultimoUscita.data).toLocaleDateString('it-IT')} <b style="color:${v.ultimoUscita.ret>=0?'#2f9e44':'#c92a2a'}" title="${v.ultimoUscita.motivo||''}">${v.ultimoUscita.ret>=0?'+':''}${f(v.ultimoUscita.ret)}%</b>`:'—'),
 sc=v&&v.sarCount!=null?(v.sarBull?'#2f9e44':'#c92a2a'):'';
 return `<tr><td><span class="tk" onclick="sch(${i})">${p.yahoo.split('.')[0]}</span></td><td title="${p.nome||''}">${(p.nome||'').slice(0,38)}</td>
 <td class="n"><input class="c" type="number" step="0.0001" value="${p.carico}" onchange="car(${i},this.value)"></td>
@@ -78,7 +78,20 @@ $('sN').textContent=S.length;$('sb').innerHTML=S.map(s=>{const pp=(s.vendita/s.c
 function car(i,x){const c=parseFloat(x);if(c>0){L[i].carico=c;sv()}render()}
 function sch(i){const p=L[i];openChartModal(p.yahoo,p.nome||p.yahoo);const h=document.getElementById('cwChartHeader');
 if(h&&!$('cwTv')){const c=document.getElementById('cwCloseBtn'),mk=(id,t,u)=>{const a=document.createElement('a');a.id=id;a.className='cw-tf-btn';a.textContent=t;a.target='_blank';a.style.textDecoration='none';a.href=u;h.insertBefore(a,c);return a};mk('cwTv','TradingView','#');mk('cwRg','Regole','regole.pdf')}
-if($('cwTv'))$('cwTv').href=tv(p.yahoo)}
+if($('cwTv'))$('cwTv').href=tv(p.yahoo);
+const sb=document.getElementById('storiaBody');if(sb&&!sb._o){sb._o=new MutationObserver(enh);sb._o.observe(sb,{childList:true})}enh()}
+function enh(){const j=typeof chartJsonCache!=='undefined'?chartJsonCache:null,wrap=document.getElementById('cwStoriaWrap');if(!j||!wrap||j.__sym!==currentSym||!j.segnale_d||!j.d)return;
+const sg=j.segnale_d,b=j.d,n=Math.min(sg.length,b.length),T=[];
+for(let i=1;i<n;i++)if(sg[i]==='LONG'&&sg[i-1]!=='LONG'){let x=i+1;while(x<n&&sg[x]!=='USCITA')x++;if(x<n)T.push({r:(b[x][4]/b[i][4]-1)*100,en:i})}
+let h='';const pz=L.find(p=>p.yahoo===currentSym),v=V[currentSym];
+if(pz){const px=v&&v.prezzo!=null?v.prezzo:null,pl=px!=null?(px/pz.carico-1)*100:null;h+=`<div><b>La tua posizione:</b> carico ${f(pz.carico,4)}${px!=null?' · prezzo '+f(px,4)+' · P&L <b style="color:'+(pl>=0?'#2f9e44':'#c92a2a')+'">'+(pl>=0?'+':'')+f(pl)+'%</b>':''}${pz.data_acquisto?' · dal '+pz.data_acquisto.split('-').reverse().join('/'):''}</div>`}
+if(T.length){const w=T.filter(t=>t.r>0),l=T.filter(t=>t.r<0),av=a=>a.length?a.reduce((s,t)=>s+t.r,0)/a.length:0,co=(T.reduce((a,t)=>a*(1+t.r/100),1)-1)*100,bh=(b[n-1][4]/b[T[0].en][4]-1)*100,sn=x=>(x>=0?'+':'')+f(x,1)+'%';
+h+=`<div><b>Riepilogo del motore su questo titolo</b> (storico caricato, solo trade chiusi): ${T.length} trade · ${Math.round(w.length/T.length*100)}% vincenti · vincita media ${sn(av(w))} · perdita media ${sn(av(l))} · composto ${sn(co)} · buy&amp;hold dal primo ingresso ${sn(bh)}</div>`}
+let ex=document.getElementById('cwExtra');if(!ex){ex=document.createElement('div');ex.id='cwExtra';ex.style.cssText='padding:10px 16px;border-bottom:1px solid #d0d7de;font-size:12px;line-height:1.7;background:#fbfcfd';wrap.parentNode.insertBefore(ex,wrap)}
+ex.innerHTML=h;ex.style.display=h?'block':'none';
+if(j.motivo_d){const M={};j.motivo_d.forEach((m,i)=>{if(m&&b[i])M[fmtDataIt(b[i][0])]=m});
+document.querySelectorAll('#storiaBody tr').forEach(tr=>{const c=tr.children;if(c.length<9)return;const dv=c[8].querySelectorAll('div'),e=c[1].textContent.trim(),u=c[2].textContent.trim();
+if(dv[0]&&M[e])dv[0].innerHTML='<b>Entrata:</b> '+M[e];if(dv[1]&&u!=='—'&&M[u])dv[1].innerHTML='<b>Uscita:</b> '+M[u]})}}
 function rim(i){if(confirm('Rimuovere '+L[i].yahoo+' dalla lista?')){L.splice(i,1);sv();render()}}
 function chiudi(i){const p=L[i],v=V[p.yahoo],x=parseFloat((prompt('Prezzo di vendita di '+p.yahoo,v&&v.prezzo!=null?v.prezzo:'')||'').replace(',','.'));if(!(x>0))return;
 S.unshift({yahoo:p.yahoo,nome:p.nome,carico:p.carico,vendita:x,data_acquisto:p.data_acquisto,data_chiusura:new Date().toISOString().slice(0,10)});L.splice(i,1);sv();render()}
