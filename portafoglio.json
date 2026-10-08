@@ -293,6 +293,30 @@
    "nome": "LEVERAGE SHARES M-A ETP",
    "carico": 7.45,
    "data_acquisto": "2026-10-08"
+  },
+  {
+   "yahoo": "WWRD.MI",
+   "nome": "WisdomTree World",
+   "carico": 25.5,
+   "data_acquisto": "2026-10-08"
+  },
+  {
+   "yahoo": "WSPX.MI",
+   "nome": "WISDOMTREE S&P 500",
+   "carico": 29.0,
+   "data_acquisto": "2026-10-08"
+  },
+  {
+   "yahoo": "WS5X.MI",
+   "nome": "WISDOMTREE EURO STOXX 50",
+   "carico": 44.86,
+   "data_acquisto": "2026-10-08"
+  },
+  {
+   "yahoo": "WRTY.MI",
+   "nome": "WisdomTree Russell 2000",
+   "carico": 35.37,
+   "data_acquisto": "2026-10-08"
   }
  ],
  "storico": []
