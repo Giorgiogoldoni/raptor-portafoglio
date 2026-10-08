@@ -317,6 +317,12 @@
    "nome": "WisdomTree Russell 2000",
    "carico": 35.37,
    "data_acquisto": "2026-10-08"
+  },
+  {
+   "yahoo": "IWVL.MI",
+   "nome": "ISHARES ED MSCI WL VAL FAC UCITS ETF ACC",
+   "carico": 72.0,
+   "data_acquisto": "2026-10-08"
   }
  ],
  "storico": []
