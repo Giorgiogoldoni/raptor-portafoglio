@@ -265,6 +265,12 @@
    "data_acquisto": "2026-10-05"
   },
   {
+   "yahoo": "MLAY.MI",
+   "nome": "",
+   "carico": 7.45,
+   "data_acquisto": "2026-10-05"
+  },
+  {
    "yahoo": "IEMB.MI",
    "nome": "ISHARES J.P. MORGAN $ EM UCITS ETF DIST",
    "carico": 78.0,
@@ -287,12 +293,6 @@
    "nome": "XTRACKERS NASDAQ 100 UCITS ETF",
    "carico": 63.5,
    "data_acquisto": "2026-10-06"
-  },
-  {
-   "yahoo": "MLAY.DE",
-   "nome": "LEVERAGE SHARES M-A ETP",
-   "carico": 7.45,
-   "data_acquisto": "2026-10-07"
   }
  ],
  "storico": []
