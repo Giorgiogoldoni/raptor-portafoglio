@@ -51,8 +51,20 @@
     "zona": "USCITA",
     "last_sent": "2026-10-08T15:01:27.413460"
   },
-  "SUSW.MI": {
+  "EXUS.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-08T15:01:27.413460"
+    "last_sent": "2026-10-08T18:12:14.112117"
+  },
+  "SEMA.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-08T18:12:14.112117"
+  },
+  "XS7W.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-08T18:12:14.112117"
+  },
+  "HIM3.MI": {
+    "zona": "WATCH",
+    "last_sent": "2026-10-08T18:12:14.112117"
   }
 }
