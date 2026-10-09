@@ -1,70 +1,46 @@
 {
   "LCOP.MI": {
     "zona": "LONG",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "NCLR.MI": {
     "zona": "LONG",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "INDO.MI": {
     "zona": "LONG",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "BATT.MI": {
     "zona": "LONG",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "FLXT.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "INDI.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "XZEM.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-08T21:22:24.055247"
-  },
-  "AIAI.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-08T21:22:24.055247"
-  },
-  "IWMO.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-08T21:22:24.055247"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "QDVA.DE": {
     "zona": "USCITA",
-    "last_sent": "2026-10-08T21:22:24.055247"
-  },
-  "GLUG.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-08T21:22:24.055247"
-  },
-  "EXUS.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-08T18:12:14.112117"
-  },
-  "SEMA.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-08T18:12:14.112117"
-  },
-  "XS7W.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-08T18:12:14.112117"
+    "last_sent": "2026-10-09T14:48:13.526672"
   },
   "HIM3.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-08T18:12:14.112117"
+    "last_sent": "2026-10-09T14:48:13.526672"
   }
 }
