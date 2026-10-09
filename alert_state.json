@@ -39,8 +39,16 @@
     "zona": "USCITA",
     "last_sent": "2026-10-09T14:48:13.526672"
   },
-  "HIM3.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-09T14:48:13.526672"
+  "SEMA.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-09T20:42:01.690478"
+  },
+  "SUSW.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-09T20:42:01.690478"
+  },
+  "XNAS.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-09T20:42:01.690478"
   }
 }
