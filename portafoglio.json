@@ -301,12 +301,6 @@
    "data_acquisto": "2026-10-13"
   },
   {
-   "yahoo": "IUSS.DE",
-   "nome": "ISHSIII-MSCI S.A.C.UE DLA",
-   "carico": 144.03,
-   "data_acquisto": "2026-10-13"
-  },
-  {
    "yahoo": "IAPD.MI",
    "nome": "ISHARES ASIA PACIF DIVID UCITS ETF DIST",
    "carico": 28.48,
@@ -322,6 +316,12 @@
    "yahoo": "VPN.MI",
    "nome": "GLOBAL X DATA CENT & DIGI INF UCITS ETF",
    "carico": 22.42,
+   "data_acquisto": "2026-10-13"
+  },
+  {
+   "yahoo": "IUS5.DE",
+   "nome": "ISHSIII-G.I.L.GOV.B.DLACC",
+   "carico": 144.03,
    "data_acquisto": "2026-10-13"
   }
  ],
