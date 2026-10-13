@@ -292,37 +292,37 @@
    "yahoo": "MLAY.DE",
    "nome": "LEVERAGE SHARES M-A ETP",
    "carico": 7.45,
-   "data_acquisto": "2026-10-08"
+   "data_acquisto": "2026-10-07"
   },
   {
-   "yahoo": "WWRD.MI",
-   "nome": "WisdomTree World",
-   "carico": 25.5,
-   "data_acquisto": "2026-10-08"
+   "yahoo": "36BB.DE",
+   "nome": "ISHS V-MWCDISEADV ETF DLD",
+   "carico": 7.7,
+   "data_acquisto": "2026-10-13"
   },
   {
-   "yahoo": "WSPX.MI",
-   "nome": "WISDOMTREE S&P 500",
-   "carico": 29.0,
-   "data_acquisto": "2026-10-08"
+   "yahoo": "IUSS.DE",
+   "nome": "ISHSIII-MSCI S.A.C.UE DLA",
+   "carico": 144.03,
+   "data_acquisto": "2026-10-13"
   },
   {
-   "yahoo": "WS5X.MI",
-   "nome": "WISDOMTREE EURO STOXX 50",
-   "carico": 44.86,
-   "data_acquisto": "2026-10-08"
+   "yahoo": "IAPD.MI",
+   "nome": "ISHARES ASIA PACIF DIVID UCITS ETF DIST",
+   "carico": 28.48,
+   "data_acquisto": "2026-10-13"
   },
   {
-   "yahoo": "WRTY.MI",
-   "nome": "WisdomTree Russell 2000",
-   "carico": 35.37,
-   "data_acquisto": "2026-10-08"
+   "yahoo": "MATW.MI",
+   "nome": "Amundi S&P World Materials Screened UCITS ETF Acc",
+   "carico": 15.81,
+   "data_acquisto": "2026-10-13"
   },
   {
-   "yahoo": "IWVL.MI",
-   "nome": "ISHARES ED MSCI WL VAL FAC UCITS ETF ACC",
-   "carico": 72.0,
-   "data_acquisto": "2026-10-08"
+   "yahoo": "VPN.MI",
+   "nome": "GLOBAL X DATA CENT & DIGI INF UCITS ETF",
+   "carico": 22.42,
+   "data_acquisto": "2026-10-13"
   }
  ],
  "storico": []
