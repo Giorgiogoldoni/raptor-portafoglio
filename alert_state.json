@@ -1,58 +1,62 @@
 {
   "LCOP.MI": {
     "zona": "LONG",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
   "NCLR.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
   "INDO.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "zona": "LONG",
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
   "BATT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
   "SAUDI.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
-  },
-  "ISPY.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
   "LGGL.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
-  },
-  "GERD.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
-  },
-  "LABL.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
-  },
-  "INRG.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
   "IEMO.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
   },
-  "STHY.MI": {
+  "XFVT.MI": {
+    "zona": "WATCH",
+    "last_sent": "2026-10-14T13:25:23.482631"
+  },
+  "XS7W.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-13T22:08:13.446586"
+    "last_sent": "2026-10-14T13:25:23.482631"
+  },
+  "LTAM.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-14T13:25:23.482631"
+  },
+  "IAPD.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-14T13:25:23.482631"
+  },
+  "MATW.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-14T13:25:23.482631"
+  },
+  "VPN.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-14T13:25:23.482631"
   }
 }
