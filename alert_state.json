@@ -1,19 +1,19 @@
 {
   "LCOP.MI": {
     "zona": "LONG",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "NCLR.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "INDO.MI": {
     "zona": "WATCH",
@@ -21,42 +21,46 @@
   },
   "BATT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "LGGL.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "IEMO.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "XFVT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "XS7W.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "LTAM.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "IAPD.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "MATW.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "VPN.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T13:25:23.482631"
+    "last_sent": "2026-10-14T22:02:25.853378"
   },
   "STHE.MI": {
     "zona": "USCITA",
     "last_sent": "2026-10-14T17:55:44.063073"
+  },
+  "HIM3.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-14T22:02:25.853378"
   }
 }
