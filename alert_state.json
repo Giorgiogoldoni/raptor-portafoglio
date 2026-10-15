@@ -1,66 +1,66 @@
 {
   "LCOP.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "zona": "USCITA",
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
   "NCLR.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
   "INDO.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T17:55:44.063073"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
   "BATT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T22:02:25.853378"
-  },
-  "LGGL.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-14T22:02:25.853378"
-  },
-  "IEMO.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
   "XFVT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
-  "XS7W.MI": {
+  "SEML.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
-  "LTAM.MI": {
+  "XWTS.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
-  "IAPD.MI": {
+  "SP1E.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
-  "MATW.MI": {
+  "SUSW.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
-  "VPN.MI": {
+  "EUNY.DE": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
-  "STHE.MI": {
+  "STHY.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T17:55:44.063073"
+    "last_sent": "2026-10-15T13:02:13.404694"
   },
-  "HIM3.MI": {
+  "3LPP.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-14T22:02:25.853378"
+    "last_sent": "2026-10-15T13:02:13.404694"
+  },
+  "EMLI.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-15T13:02:13.404694"
+  },
+  "36BB.DE": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-15T13:02:13.404694"
   }
 }
