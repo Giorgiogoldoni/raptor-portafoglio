@@ -23,10 +23,6 @@
     "zona": "WATCH",
     "last_sent": "2026-10-16T12:58:03.123877"
   },
-  "XFVT.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-16T12:58:03.123877"
-  },
   "XWTS.MI": {
     "zona": "USCITA",
     "last_sent": "2026-10-16T12:58:03.123877"
@@ -42,5 +38,13 @@
   "IEMB.MI": {
     "zona": "USCITA",
     "last_sent": "2026-10-16T12:58:03.123877"
+  },
+  "LCOC.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-16T17:20:36.215014"
+  },
+  "SUSW.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-16T17:20:36.215014"
   }
 }
