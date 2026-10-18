@@ -19,12 +19,6 @@
    "data_acquisto": "2026-07-15"
   },
   {
-   "yahoo": "EXUS.MI",
-   "nome": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-   "carico": 37.4375,
-   "data_acquisto": "2026-08-14"
-  },
-  {
    "yahoo": "NCLR.MI",
    "nome": "WisdomTree Uranium and Nuclear Energy UCITS ETF Acc",
    "carico": 56.1,
@@ -34,18 +28,6 @@
    "yahoo": "CSPXJ.MI",
    "nome": "iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc)",
    "carico": 209.52,
-   "data_acquisto": "2026-08-14"
-  },
-  {
-   "yahoo": "SEMA.MI",
-   "nome": "iShares MSCI EM UCITS ETF USD (Acc)",
-   "carico": 59.88,
-   "data_acquisto": "2026-08-14"
-  },
-  {
-   "yahoo": "XZEM.MI",
-   "nome": "Xtrackers MSCI Emerging Markets ESG UCITS ETF 1 C",
-   "carico": 59.28,
    "data_acquisto": "2026-08-14"
   },
   {
@@ -64,12 +46,6 @@
    "yahoo": "SAUDI.MI",
    "nome": "Franklin FTSE Saudi Arabia UCITS ETF Acc",
    "carico": 21.46,
-   "data_acquisto": "2026-08-14"
-  },
-  {
-   "yahoo": "FLXT.MI",
-   "nome": "Franklin FTSE Taiwan UCITS ETF",
-   "carico": 66.17,
    "data_acquisto": "2026-08-14"
   },
   {
@@ -94,12 +70,6 @@
    "yahoo": "XWTS.MI",
    "nome": "Xtrackers MSCI World Communication Services UCITS ETF",
    "carico": 28.495,
-   "data_acquisto": "2026-08-14"
-  },
-  {
-   "yahoo": "IWMO.MI",
-   "nome": "iShares Edge MSCI World Momentum Factor UCITS ETF USD (Acc)",
-   "carico": 101.695,
    "data_acquisto": "2026-08-14"
   },
   {
@@ -133,12 +103,6 @@
    "data_acquisto": "2026-08-14"
   },
   {
-   "yahoo": "QDVA.DE",
-   "nome": "iShares Edge MSCI USA Momentum Factor UCITS ETF USD (Acc)",
-   "carico": 19.276,
-   "data_acquisto": "2026-08-14"
-  },
-  {
    "yahoo": "XESD.DE",
    "nome": "Xtrackers Spain UCITS ETF 1D",
    "carico": 45.44,
@@ -169,12 +133,6 @@
    "data_acquisto": "2026-08-14"
   },
   {
-   "yahoo": "AIAI.MI",
-   "nome": "L&G Artificial Intelligence UCITS ETF",
-   "carico": 32.7827,
-   "data_acquisto": "2026-08-14"
-  },
-  {
    "yahoo": "GLUG.MI",
    "nome": "L&G Clean Water UCITS ETF",
    "carico": 18.3176,
@@ -190,12 +148,6 @@
    "yahoo": "SP1E.MI",
    "nome": "L&G S&P 100 Equal Weight UCITS ETF",
    "carico": 10.63,
-   "data_acquisto": "2026-08-14"
-  },
-  {
-   "yahoo": "XS7W.MI",
-   "nome": "Xtrackers Portfolio Income UCITS ETF 1D",
-   "carico": 13.5286,
    "data_acquisto": "2026-08-14"
   },
   {
@@ -292,37 +244,37 @@
    "yahoo": "MLAY.DE",
    "nome": "LEVERAGE SHARES M-A ETP",
    "carico": 7.45,
-   "data_acquisto": "2026-10-07"
+   "data_acquisto": "2026-10-08"
   },
   {
-   "yahoo": "36BB.DE",
-   "nome": "ISHS V-MWCDISEADV ETF DLD",
-   "carico": 7.7,
-   "data_acquisto": "2026-10-13"
+   "yahoo": "WWRD.MI",
+   "nome": "WisdomTree World",
+   "carico": 25.5,
+   "data_acquisto": "2026-10-08"
   },
   {
-   "yahoo": "IAPD.MI",
-   "nome": "ISHARES ASIA PACIF DIVID UCITS ETF DIST",
-   "carico": 28.48,
-   "data_acquisto": "2026-10-13"
+   "yahoo": "WSPX.MI",
+   "nome": "WISDOMTREE S&P 500",
+   "carico": 29.0,
+   "data_acquisto": "2026-10-08"
   },
   {
-   "yahoo": "MATW.MI",
-   "nome": "Amundi S&P World Materials Screened UCITS ETF Acc",
-   "carico": 15.81,
-   "data_acquisto": "2026-10-13"
+   "yahoo": "WS5X.MI",
+   "nome": "WISDOMTREE EURO STOXX 50",
+   "carico": 44.86,
+   "data_acquisto": "2026-10-08"
   },
   {
-   "yahoo": "VPN.MI",
-   "nome": "GLOBAL X DATA CENT & DIGI INF UCITS ETF",
-   "carico": 22.42,
-   "data_acquisto": "2026-10-13"
+   "yahoo": "WRTY.MI",
+   "nome": "WisdomTree Russell 2000",
+   "carico": 35.37,
+   "data_acquisto": "2026-10-08"
   },
   {
-   "yahoo": "IUS5.DE",
-   "nome": "ISHSIII-G.I.L.GOV.B.DLACC",
-   "carico": 144.03,
-   "data_acquisto": "2026-10-13"
+   "yahoo": "IWVL.MI",
+   "nome": "ISHARES ED MSCI WL VAL FAC UCITS ETF ACC",
+   "carico": 72.0,
+   "data_acquisto": "2026-10-08"
   }
  ],
  "storico": []
