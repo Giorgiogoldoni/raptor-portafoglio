@@ -1,50 +1,58 @@
 {
   "LCOP.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-16T20:55:54.162291"
+    "zona": "WATCH",
+    "last_sent": "2026-10-19T14:30:49.204420"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-16T20:55:54.162291"
+    "last_sent": "2026-10-19T14:30:49.204420"
   },
   "NCLR.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-16T20:55:54.162291"
+    "last_sent": "2026-10-19T14:30:49.204420"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-16T20:55:54.162291"
+    "last_sent": "2026-10-19T14:30:49.204420"
   },
   "INDO.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-16T20:55:54.162291"
+    "last_sent": "2026-10-19T14:30:49.204420"
   },
   "BATT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-16T20:55:54.162291"
-  },
-  "XWTS.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-16T20:55:54.162291"
-  },
-  "EUNY.DE": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-16T20:55:54.162291"
-  },
-  "IEMB.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-16T20:55:54.162291"
-  },
-  "LCOC.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-16T17:20:36.215014"
-  },
-  "SUSW.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-16T17:20:36.215014"
+    "last_sent": "2026-10-19T14:30:49.204420"
   },
   "XFVT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-16T20:55:54.162291"
+    "last_sent": "2026-10-19T14:30:49.204420"
+  },
+  "CSPXJ.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-19T14:30:49.204420"
+  },
+  "IEMO.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-19T14:30:49.204420"
+  },
+  "XEON.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-19T14:30:49.204420"
+  },
+  "XESD.DE": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-19T14:30:49.204420"
+  },
+  "SP1E.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-19T14:30:49.204420"
+  },
+  "3LPP.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-19T14:30:49.204420"
+  },
+  "HIM3.MI": {
+    "zona": "WATCH",
+    "last_sent": "2026-10-19T14:30:49.204420"
   }
 }
