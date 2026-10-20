@@ -23,27 +23,11 @@
     "zona": "WATCH",
     "last_sent": "2026-10-20T13:06:44.387097"
   },
-  "XFVT.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-20T13:06:44.387097"
-  },
   "3LPP.MI": {
     "zona": "USCITA",
     "last_sent": "2026-10-20T13:06:44.387097"
   },
-  "HIM3.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-20T13:06:44.387097"
-  },
-  "VUKE.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-20T13:06:44.387097"
-  },
   "INDI.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-20T13:06:44.387097"
-  },
-  "ISPA.DE": {
     "zona": "USCITA",
     "last_sent": "2026-10-20T13:06:44.387097"
   }
