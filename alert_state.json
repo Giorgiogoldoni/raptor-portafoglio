@@ -27,12 +27,12 @@
     "zona": "USCITA",
     "last_sent": "2026-10-21T13:23:17.745652"
   },
-  "MEUD.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-21T13:23:17.745652"
-  },
   "HIM3.MI": {
     "zona": "WATCH",
     "last_sent": "2026-10-21T13:23:17.745652"
+  },
+  "D5BI.DE": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-21T18:04:01.031173"
   }
 }
