@@ -1,35 +1,31 @@
 {
   "LCOP.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-21T13:23:17.745652"
+    "last_sent": "2026-10-21T22:19:08.979473"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-21T13:23:17.745652"
+    "last_sent": "2026-10-21T22:19:08.979473"
   },
   "NCLR.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-21T13:23:17.745652"
+    "last_sent": "2026-10-21T22:19:08.979473"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-21T13:23:17.745652"
+    "last_sent": "2026-10-21T22:19:08.979473"
   },
   "INDO.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-21T13:23:17.745652"
+    "last_sent": "2026-10-21T22:19:08.979473"
   },
   "BATT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-21T13:23:17.745652"
+    "last_sent": "2026-10-21T22:19:08.979473"
   },
   "VUKE.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-21T13:23:17.745652"
-  },
-  "HIM3.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-21T13:23:17.745652"
+    "last_sent": "2026-10-21T22:19:08.979473"
   },
   "D5BI.DE": {
     "zona": "USCITA",
