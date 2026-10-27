@@ -1,7 +1,7 @@
 {
   "LCOP.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-27T12:47:30.307114"
+    "zona": "LONG",
+    "last_sent": "2026-10-27T18:41:38.414514"
   },
   "2PAL.MI": {
     "zona": "WATCH",
@@ -24,10 +24,6 @@
     "last_sent": "2026-10-27T12:47:30.307114"
   },
   "HIM3.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-27T12:47:30.307114"
-  },
-  "INRG.MI": {
     "zona": "WATCH",
     "last_sent": "2026-10-27T12:47:30.307114"
   }
