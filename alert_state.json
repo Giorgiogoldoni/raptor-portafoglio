@@ -20,8 +20,8 @@
     "last_sent": "2026-10-30T13:22:04.961126"
   },
   "BATT.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-10-30T13:22:04.961126"
+    "zona": "USCITA",
+    "last_sent": "2026-10-30T19:08:41.044073"
   },
   "INRG.MI": {
     "zona": "WATCH",
@@ -32,8 +32,8 @@
     "last_sent": "2026-10-30T13:22:04.961126"
   },
   "HIM3.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-10-30T13:22:04.961126"
+    "zona": "USCITA",
+    "last_sent": "2026-10-30T19:08:41.044073"
   },
   "XNAS.MI": {
     "zona": "USCITA",
@@ -42,5 +42,17 @@
   "WSPX.MI": {
     "zona": "USCITA",
     "last_sent": "2026-10-30T13:22:04.961126"
+  },
+  "ISPY.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-30T19:08:41.044073"
+  },
+  "LGGL.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-30T19:08:41.044073"
+  },
+  "ISPA.DE": {
+    "zona": "USCITA",
+    "last_sent": "2026-10-30T19:08:41.044073"
   }
 }
