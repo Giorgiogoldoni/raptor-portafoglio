@@ -275,6 +275,12 @@
    "nome": "ISHARES ED MSCI WL VAL FAC UCITS ETF ACC",
    "carico": 72.0,
    "data_acquisto": "2026-10-08"
+  },
+  {
+   "yahoo": "IWMO.MI",
+   "nome": "ISHARES EDG MSCI WL MO FAC UCITS ETF ACC",
+   "carico": 98.0,
+   "data_acquisto": "2026-11-02"
   }
  ],
  "storico": []
