@@ -1,54 +1,62 @@
 {
   "LCOP.MI": {
     "zona": "LONG",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
   "NCLR.MI": {
     "zona": "LONG",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
   "HSTE.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "zona": "WATCH",
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
   "INDO.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
   "BATT.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "zona": "USCITA",
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
   "INRG.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
   "HIM3.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-11-02T16:02:35.384647"
-  },
-  "CSPXJ.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
-  "VUKE.MI": {
+  "ISPY.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
-  "SP1E.MI": {
+  "LGGL.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
-  "WWRD.MI": {
+  "LABL.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
   },
-  "IWVL.MI": {
+  "ISPA.DE": {
     "zona": "USCITA",
-    "last_sent": "2026-11-02T16:02:35.384647"
+    "last_sent": "2026-11-03T00:11:02.364509"
+  },
+  "XNAS.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-03T00:11:02.364509"
+  },
+  "WSPX.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-03T00:11:02.364509"
+  },
+  "IWMO.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-03T00:11:02.364509"
   }
 }
