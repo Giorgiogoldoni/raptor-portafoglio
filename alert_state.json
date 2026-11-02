@@ -1,58 +1,54 @@
 {
   "LCOP.MI": {
     "zona": "LONG",
-    "last_sent": "2026-10-30T23:35:22.420611"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-30T23:35:22.420611"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
   "NCLR.MI": {
     "zona": "LONG",
-    "last_sent": "2026-10-30T23:35:22.420611"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
   "HSTE.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-10-30T23:35:22.420611"
+    "zona": "LONG",
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
   "INDO.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-30T23:35:22.420611"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
   "BATT.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-30T19:08:41.044073"
+    "zona": "WATCH",
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
   "INRG.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-10-30T23:35:22.420611"
-  },
-  "LABL.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-30T23:35:22.420611"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
   "HIM3.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-10-30T19:08:41.044073"
+    "zona": "WATCH",
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
-  "XNAS.MI": {
+  "CSPXJ.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-30T23:35:22.420611"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
-  "WSPX.MI": {
+  "VUKE.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-30T23:35:22.420611"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
-  "ISPY.MI": {
+  "SP1E.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-30T19:08:41.044073"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
-  "LGGL.MI": {
+  "WWRD.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-30T19:08:41.044073"
+    "last_sent": "2026-11-02T16:02:35.384647"
   },
-  "ISPA.DE": {
+  "IWVL.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-10-30T19:08:41.044073"
+    "last_sent": "2026-11-02T16:02:35.384647"
   }
 }
