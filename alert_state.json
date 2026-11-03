@@ -1,62 +1,70 @@
 {
   "LCOP.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "zona": "USCITA",
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
   "NCLR.MI": {
     "zona": "LONG",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
   "HSTE.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "zona": "LONG",
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
   "INDO.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
   "BATT.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
-  },
-  "INRG.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
   "HIM3.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "zona": "WATCH",
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
-  "ISPY.MI": {
+  "CSPXJ.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
-  "LGGL.MI": {
+  "SAUDI.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
-  "LABL.MI": {
+  "IEMO.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
-  "ISPA.DE": {
+  "STHE.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
-  "XNAS.MI": {
+  "SP1E.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
-  "WSPX.MI": {
+  "GERD.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
   },
-  "IWMO.MI": {
+  "STHY.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-03T00:11:02.364509"
+    "last_sent": "2026-11-03T14:49:02.944686"
+  },
+  "IEMB.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-03T14:49:02.944686"
+  },
+  "WS5X.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-03T14:49:02.944686"
+  },
+  "WRTY.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-03T14:49:02.944686"
   }
 }
