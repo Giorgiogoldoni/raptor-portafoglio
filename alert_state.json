@@ -1,34 +1,46 @@
 {
   "LCOP.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-10T22:13:49.547621"
+    "last_sent": "2026-11-11T14:46:16.010091"
   },
   "2PAL.MI": {
     "zona": "LONG",
-    "last_sent": "2026-11-10T22:13:49.547621"
+    "last_sent": "2026-11-11T14:46:16.010091"
   },
   "NCLR.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-11-10T22:13:49.547621"
+    "zona": "LONG",
+    "last_sent": "2026-11-11T14:46:16.010091"
   },
   "HSTE.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-11-10T22:13:49.547621"
+    "zona": "USCITA",
+    "last_sent": "2026-11-11T14:46:16.010091"
   },
   "INDO.MI": {
     "zona": "LONG",
-    "last_sent": "2026-11-10T22:13:49.547621"
+    "last_sent": "2026-11-11T14:46:16.010091"
   },
   "BATT.MI": {
-    "zona": "WATCH",
-    "last_sent": "2026-11-10T22:13:49.547621"
+    "zona": "LONG",
+    "last_sent": "2026-11-11T14:46:16.010091"
   },
   "HIM3.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-10T22:13:49.547621"
+    "last_sent": "2026-11-11T14:46:16.010091"
   },
-  "3LPP.MI": {
+  "MEUD.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-10T22:13:49.547621"
+    "last_sent": "2026-11-11T14:46:16.010091"
+  },
+  "STHE.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-11T14:46:16.010091"
+  },
+  "DJLEV.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-11T14:46:16.010091"
+  },
+  "WS5X.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-11T14:46:16.010091"
   }
 }
