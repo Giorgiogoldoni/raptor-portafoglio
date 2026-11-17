@@ -1,58 +1,70 @@
 {
   "LCOP.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "last_sent": "2026-11-17T16:40:12.356720"
   },
   "2PAL.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "zona": "WATCH",
+    "last_sent": "2026-11-17T16:40:12.356720"
   },
   "NCLR.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "zona": "USCITA",
+    "last_sent": "2026-11-17T16:40:12.356720"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "last_sent": "2026-11-17T16:40:12.356720"
   },
   "INDO.MI": {
     "zona": "LONG",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "last_sent": "2026-11-17T16:40:12.356720"
   },
   "BATT.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "zona": "WATCH",
+    "last_sent": "2026-11-17T16:40:12.356720"
   },
   "HIM3.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-17T00:48:05.932800"
-  },
-  "CSPXJ.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-17T00:48:05.932800"
-  },
-  "SEML.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-17T00:48:05.932800"
-  },
-  "INDI.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-17T00:48:05.932800"
-  },
-  "3LPP.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "last_sent": "2026-11-17T16:40:12.356720"
   },
   "IEMB.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-17T00:48:05.932800"
-  },
-  "EMLI.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "last_sent": "2026-11-17T16:40:12.356720"
   },
   "INRG.MI": {
+    "zona": "WATCH",
+    "last_sent": "2026-11-17T16:40:12.356720"
+  },
+  "IEMO.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-17T00:48:05.932800"
+    "last_sent": "2026-11-17T16:40:12.356720"
+  },
+  "MEUD.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-17T16:40:12.356720"
+  },
+  "XFVT.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-17T16:40:12.356720"
+  },
+  "XESD.DE": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-17T16:40:12.356720"
+  },
+  "D5BI.DE": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-17T16:40:12.356720"
+  },
+  "DJLEV.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-17T16:40:12.356720"
+  },
+  "WS5X.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-17T16:40:12.356720"
+  },
+  "WRTY.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-17T16:40:12.356720"
   }
 }
