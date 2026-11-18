@@ -1,62 +1,70 @@
 {
   "LCOP.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "NCLR.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "INDO.MI": {
     "zona": "LONG",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "BATT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "HIM3.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "INRG.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "WRNW.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "SAUDI.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "XWTS.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "LGGL.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "SP1E.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "LABL.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
   },
   "IWMO.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-18T16:18:49.411527"
+    "last_sent": "2026-11-18T23:40:16.194601"
+  },
+  "EMLI.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-18T23:40:16.194601"
+  },
+  "XNAS.MI": {
+    "zona": "WATCH",
+    "last_sent": "2026-11-18T23:40:16.194601"
   }
 }
