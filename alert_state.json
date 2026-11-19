@@ -1,70 +1,50 @@
 {
   "LCOP.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "2PAL.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "NCLR.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "HSTE.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "INDO.MI": {
-    "zona": "LONG",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "zona": "USCITA",
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "BATT.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "HIM3.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "INRG.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "WRNW.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
   "SAUDI.MI": {
     "zona": "USCITA",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
   },
-  "XWTS.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-18T23:40:16.194601"
-  },
-  "LGGL.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-18T23:40:16.194601"
-  },
-  "SP1E.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-18T23:40:16.194601"
-  },
-  "LABL.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-18T23:40:16.194601"
-  },
-  "IWMO.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-18T23:40:16.194601"
-  },
-  "EMLI.MI": {
-    "zona": "USCITA",
-    "last_sent": "2026-11-18T23:40:16.194601"
-  },
-  "XNAS.MI": {
+  "LTAM.MI": {
     "zona": "WATCH",
-    "last_sent": "2026-11-18T23:40:16.194601"
+    "last_sent": "2026-11-19T16:25:32.311169"
+  },
+  "STHY.MI": {
+    "zona": "USCITA",
+    "last_sent": "2026-11-19T16:25:32.311169"
   }
 }
